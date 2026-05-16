@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>峴港 × 會安 ✦ 七日美學手帳</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+html{font-size:16px}
+:root{
+  --paper:#faf8f5;--paper-warm:#f5f0e8;--ink:#3a3530;
+  --ink-light:#7a736a;--ink-faint:#b8b0a5;
+  --pink:#d4a5a0;--pink-l:#ecddd9;--pink-bg:#f9f0ee;
+  --blue:#8da8b8;--blue-l:#ccdae3;--blue-bg:#eef4f7;
+  --sage:#9aab95;--sage-l:#d4ddd2;--sage-bg:#f1f4f0;
+  --sand:#c4a882;--sand-l:#e8daca;--sand-bg:#f8f3ec;
+  --mauve:#b09aab;--mauve-l:#ddd4e3;--mauve-bg:#f5f0f7;
+  --gold:#b8943a;--gold-bg:#fdf6e3;--gold-l:#e8d88a;
+  --green:#6aaa7a;--green-bg:#eef6f1;--green-l:#b8ddc5;
+  --border:#e0d8d0;--shadow:rgba(58,53,48,.06);
+  --r:16px;--nav-h:72px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#e8e3dc;font-family:'Noto Sans TC',sans-serif;color:var(--ink);display:flex;justify-content:center;align-items:flex-start}
+#app{width:100%;max-width:420px;height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--paper);box-shadow:0 0 60px rgba(0,0,0,.13);overflow:hidden}
+
+/* STATUS BAR */
+#status-bar{flex-shrink:0;padding:9px 16px;text-align:center;font-size:13px;font-weight:500;letter-spacing:.03em;border-bottom:1px solid var(--border);line-height:1.5}
+#status-bar.pre{background:linear-gradient(135deg,var(--blue-bg),var(--pink-bg));color:var(--blue)}
+#status-bar.during{background:linear-gradient(135deg,var(--sage-bg),var(--gold-bg));color:#7a9670}
+#status-bar.post{background:linear-gradient(135deg,var(--pink-bg),var(--mauve-bg));color:var(--pink)}
+
+/* HEADER */
+.app-header{flex-shrink:0;background:var(--paper);border-bottom:1.5px solid var(--border);padding:13px 16px 0}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:9px}
+.header-label{font-family:'DM Serif Display',serif;font-size:11px;letter-spacing:.25em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:2px}
+.header-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);line-height:1.15}
+.header-title em{font-style:italic;color:var(--pink)}
+.header-badge{background:var(--pink-bg);border:1.5px solid var(--pink-l);border-radius:50px;padding:5px 11px;text-align:center;flex-shrink:0}
+.badge-days{font-family:'DM Serif Display',serif;font-size:20px;color:var(--pink);line-height:1;display:block}
+.badge-label{font-size:10px;color:var(--ink-faint);letter-spacing:.08em}
+.flight-board{background:var(--ink);color:#f5f0e8;border-radius:10px;margin:0 0 9px;padding:10px 13px;font-size:13px}
+.fb-row{display:flex;align-items:center;gap:7px;padding:4px 0}
+.fb-row+.fb-row{border-top:1px solid rgba(255,255,255,.08)}
+.fb-tag{background:var(--pink);color:white;border-radius:4px;padding:2px 7px;font-size:11px;flex-shrink:0}
+.fb-tag.ret{background:var(--blue)}
+.fb-info{flex:1;color:#c8c0b8;font-size:12px}
+.fb-time{font-family:'DM Serif Display',serif;font-size:13px;color:#faf8f5;flex-shrink:0}
+.fb-seat{margin-top:5px;border-top:1px dashed rgba(255,255,255,.15);padding-top:5px;color:#a8a098;font-size:11px;display:flex;align-items:center;gap:4px}
+.fb-seat i{color:var(--gold-l);font-size:10px}
+.hotels-row{display:flex;gap:7px;margin-bottom:9px}
+.hotel-chip{flex:1;background:var(--paper-warm);border:1.5px solid var(--border);border-radius:9px;padding:7px 9px}
+.hotel-chip-title{font-weight:500;color:var(--ink);font-size:12px;margin-bottom:2px;display:flex;align-items:center;gap:4px}
+.hotel-chip-title i{font-size:10px;color:var(--mauve)}
+.hotel-chip-sub{color:var(--ink-light);font-size:11px}
+.hotel-chip-days{font-size:10px;margin-top:1px}
+.header-meta{display:flex;gap:10px;align-items:center;padding-bottom:9px;flex-wrap:wrap}
+.meta-chip{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--ink-light)}
+.meta-chip i{font-size:10px;color:var(--blue)}
+
+/* COMPACT STICKY */
+.compact-sticky{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1.5px solid var(--border);box-shadow:0 2px 8px var(--shadow)}
+.compact-meta{display:flex;gap:8px;align-items:center;padding:7px 14px 6px;border-bottom:1px solid var(--border)}
+.compact-meta .meta-chip{font-size:11px}
+.day-selector-bar{background:var(--paper-warm);padding:8px 12px;overflow-x:auto;display:flex;gap:6px;scrollbar-width:none}
+.day-selector-bar::-webkit-scrollbar{display:none}
+.day-chip{flex-shrink:0;padding:6px 13px;border-radius:50px;border:1.5px solid var(--border);background:var(--paper);font-size:13px;color:var(--ink-light);cursor:pointer;transition:all .2s;white-space:nowrap}
+.day-chip.active{background:var(--blue);border-color:var(--blue);color:white}
+
+/* SCROLL */
+.scroll-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.scroll-content::-webkit-scrollbar{width:3px}
+.scroll-content::-webkit-scrollbar-thumb{background:var(--blue-l);border-radius:10px}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.panel-inner{padding-bottom:calc(var(--nav-h)+20px)}
+
+/* REGION BADGE */
+.region-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:50px;font-size:11px;font-weight:500;flex-shrink:0}
+.rb-hoian{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-l)}
+.rb-danang{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-l)}
+
+/* WEATHER WIDGET */
+.weather-widget{margin:14px 16px 0;background:linear-gradient(135deg,#4a90b8,#7ab3cf);border-radius:14px;padding:14px 16px;color:white;box-shadow:0 4px 16px rgba(74,144,184,.3)}
+.weather-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.weather-location{font-size:12px;opacity:.85;display:flex;align-items:center;gap:4px}
+.weather-location i{font-size:10px}
+.weather-main{display:flex;align-items:center;gap:10px}
+.weather-icon{font-size:36px;line-height:1}
+.weather-temp{font-family:'DM Serif Display',serif;font-size:38px;line-height:1;color:white}
+.weather-desc{font-size:13px;opacity:.9;margin-top:2px}
+.weather-details{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
+.weather-detail{font-size:11px;opacity:.85;display:flex;align-items:center;gap:4px}
+.weather-detail i{font-size:10px;opacity:.7}
+.weather-forecast{margin-top:11px;border-top:1px solid rgba(255,255,255,.2);padding-top:11px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.weather-forecast::-webkit-scrollbar{display:none}
+.forecast-item{flex-shrink:0;background:rgba(255,255,255,.15);border-radius:9px;padding:6px 10px;text-align:center;min-width:56px}
+.forecast-time{font-size:10px;opacity:.8;margin-bottom:4px}
+.forecast-icon{font-size:16px;display:block;margin:2px 0}
+.forecast-temp{font-family:'DM Serif Display',serif;font-size:14px}
+.weather-loading{text-align:center;padding:20px;font-size:13px;opacity:.8}
+.weather-error{background:var(--sand-bg);color:var(--sand);border:1.5px solid var(--sand-l);border-radius:14px;margin:14px 16px 0;padding:12px 14px;font-size:12px;display:flex;align-items:center;gap:8px}
+
+/* TIMELINE */
+.day-header{padding:12px 16px 0}
+.day-title{font-family:'DM Serif Display',serif;font-size:19px;color:var(--ink);margin-bottom:4px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.day-subtitle{font-size:13px;color:var(--ink-faint)}
+.timeline{padding:14px 16px 2px;position:relative}
+.timeline::before{content:'';position:absolute;left:44px;top:14px;bottom:2px;width:1.5px;background:linear-gradient(to bottom,var(--blue-l),transparent)}
+.tl-item{display:flex;gap:12px;margin-bottom:16px;position:relative}
+.tl-time{width:40px;flex-shrink:0;text-align:right;padding-top:4px}
+.tl-time span{font-size:12px;color:var(--ink-faint);font-family:'DM Serif Display',serif}
+.tl-dot{width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid var(--blue);flex-shrink:0;margin-top:5px;position:relative;z-index:1}
+.tl-dot.pink{border-color:var(--pink)}.tl-dot.sage{border-color:var(--sage)}.tl-dot.sand{border-color:var(--sand)}.tl-dot.mauve{border-color:var(--mauve)}.tl-dot.gold{border-color:var(--gold)}
+.tl-card{flex:1;background:var(--paper);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 8px var(--shadow)}
+/* Thumbnail */
+.tl-thumb-wrap{position:relative}
+.tl-thumb{width:100%;height:100px;object-fit:cover;display:block;background:var(--paper-warm)}
+.tl-nav-btn{position:absolute;bottom:7px;right:8px;display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:50px;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);color:var(--blue);font-size:12px;font-weight:600;text-decoration:none;border:1px solid var(--blue-l);transition:all .18s}
+.tl-nav-btn:hover{background:var(--blue);color:white}
+.tl-nav-btn i{font-size:11px}
+.tl-body{padding:11px 13px 12px}
+.tl-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px}
+.tl-name{font-size:14px;font-weight:500;color:var(--ink);line-height:1.3;font-family:'Noto Serif TC',serif;flex:1}
+.tl-ico{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-left:6px}
+.ic-food{background:var(--pink-bg);color:var(--pink)}.ic-sight{background:var(--blue-bg);color:var(--blue)}.ic-shop{background:var(--sand-bg);color:var(--sand)}.ic-hotel{background:var(--mauve-bg);color:var(--mauve)}.ic-culture{background:var(--sage-bg);color:var(--sage)}.ic-transport{background:var(--sand-bg);color:var(--sand)}.ic-spa{background:var(--pink-bg);color:var(--pink)}.ic-night{background:var(--mauve-bg);color:var(--mauve)}.ic-gold{background:var(--gold-bg);color:var(--gold)}
+.tl-note{font-size:13px;color:var(--ink-light);line-height:1.65;margin-bottom:7px}
+.tl-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tl-tag{font-size:11px;padding:2px 8px;border-radius:50px;border:1px solid}
+.t-pink{background:var(--pink-bg);border-color:var(--pink-l);color:var(--pink)}.t-blue{background:var(--blue-bg);border-color:var(--blue-l);color:var(--blue)}.t-sage{background:var(--sage-bg);border-color:var(--sage-l);color:var(--sage)}.t-sand{background:var(--sand-bg);border-color:var(--sand-l);color:var(--sand)}.t-mauve{background:var(--mauve-bg);border-color:var(--mauve-l);color:var(--mauve)}.t-gold{background:var(--gold-bg);border-color:var(--gold-l);color:var(--gold)}
+
+/* FOOD RADAR */
+.food-radar{margin:0 16px 18px;border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--paper);box-shadow:0 2px 10px var(--shadow)}
+.food-radar-header{padding:9px 13px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--paper-warm)}
+.food-radar-title{font-size:13px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:5px}
+.food-tabs{display:flex;border-bottom:1px solid var(--border)}
+.food-tab{flex:1;padding:8px 4px;text-align:center;font-size:12px;color:var(--ink-faint);cursor:pointer;transition:all .2s;border-bottom:2.5px solid transparent}
+.food-tab.active{color:var(--blue);border-bottom-color:var(--blue);background:var(--blue-bg)}
+.food-list{padding:6px 7px}
+.food-item{display:flex;align-items:flex-start;gap:8px;padding:8px;border-radius:10px;cursor:pointer;transition:all .2s;border:1.5px solid transparent;margin-bottom:2px}
+.food-item:hover{background:var(--paper-warm)}
+.food-item.picked{background:var(--sage-bg);border-color:var(--sage-l)}
+.food-item-num{width:19px;height:19px;border-radius:50%;background:var(--paper-warm);font-size:11px;color:var(--ink-faint);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Serif Display',serif;margin-top:3px}
+.food-item.picked .food-item-num{background:var(--sage);color:white}
+.food-item-body{flex:1;min-width:0}
+.food-item-name{font-size:13px;color:var(--ink);line-height:1.3;font-weight:500}
+.food-item-note{font-size:11px;color:var(--ink-faint);margin-top:2px}
+.food-item-actions{display:flex;align-items:center;gap:5px;flex-shrink:0;margin-top:3px}
+.food-item-check{font-size:13px;color:var(--sage);display:none}
+.food-item.picked .food-item-check{display:block}
+.food-map-btn{display:flex;align-items:center;gap:3px;padding:4px 9px;border-radius:50px;background:var(--blue-bg);border:1px solid var(--blue-l);color:var(--blue);font-size:11px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .18s;font-family:'Noto Sans TC',sans-serif}
+.food-map-btn:hover{background:var(--blue);color:white;border-color:var(--blue)}
+.food-map-btn i{font-size:10px}
+.food-radar-footer{padding:6px 8px 9px;text-align:center;font-size:11px;color:var(--ink-faint);border-top:1px dashed var(--border);margin-top:3px}
+
+/* OVERVIEW */
+.overview-grid{padding:16px 14px;display:flex;flex-direction:column;gap:10px}
+.ov-title{font-size:12px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;font-family:'DM Serif Display',serif}
+.day-card{background:var(--paper);border:1.5px solid var(--border);border-radius:var(--r);padding:13px 15px;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px var(--shadow)}
+.day-card:hover,.day-card:active{border-color:var(--blue);box-shadow:0 4px 16px rgba(141,168,184,.2);transform:translateY(-1px)}
+.day-card-top{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.day-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--blue);line-height:1;width:36px;flex-shrink:0}
+.day-info-title{font-family:'Noto Serif TC',serif;font-size:14px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.day-info-date{font-size:12px;color:var(--ink-faint);display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:2px}
+.day-color-bar{height:2.5px;border-radius:2px;background:linear-gradient(to right,var(--blue-l),var(--pink-l),var(--sand-l))}
+.day-highlights{display:flex;gap:4px;flex-wrap:wrap;margin-top:9px}
+.hl-chip{font-size:11px;color:var(--ink-light);background:var(--paper-warm);border:1px solid var(--border);border-radius:50px;padding:3px 8px;display:flex;align-items:center;gap:3px}
+.hl-chip i{font-size:9px;color:var(--blue)}
+
+/* BUDGET */
+.budget-header{background:var(--blue-bg);border-bottom:1.5px solid var(--blue-l);padding:16px}
+.budget-title{font-family:'DM Serif Display',serif;font-size:13px;color:var(--blue);letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase}
+.budget-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.budget-card{background:var(--paper);border-radius:11px;padding:11px 12px;border:1.5px solid var(--blue-l)}
+.bc-label{font-size:11px;color:var(--ink-faint);margin-bottom:3px}
+.bc-amount{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink);line-height:1}
+.bc-unit{font-size:11px;color:var(--ink-faint);margin-top:2px}
+.budget-card.remain .bc-amount{color:var(--sage)}.budget-card.spent .bc-amount{color:var(--pink)}
+.budget-progress{margin-top:11px}
+.bp-label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-light);margin-bottom:5px}
+.progress-bar{height:6px;background:var(--blue-l);border-radius:10px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(to right,var(--blue),var(--pink));border-radius:10px;transition:width .5s ease}
+.rate-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:50px;font-size:12px;font-weight:500;margin-top:10px}
+.rate-badge.live{background:var(--green-bg);color:var(--green);border:1px solid var(--green-l)}
+.rate-badge.fallback{background:var(--sand-bg);color:var(--sand);border:1px solid var(--sand-l)}
+.rate-badge i{font-size:10px}
+.dual-info{background:var(--sand-bg);border:1.5px solid var(--sand-l);border-radius:11px;padding:10px 13px;margin-top:10px;display:flex;align-items:center;gap:11px}
+.dc-flag{font-size:22px}.dc-rate{font-family:'DM Serif Display',serif;font-size:14px;color:var(--ink);margin-bottom:1px}.dc-note{font-size:11px;color:var(--ink-faint)}
+.log-section{padding:13px 16px}
+.section-label{font-size:12px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase;font-family:'DM Serif Display',serif;margin-bottom:9px}
+.log-add{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.log-input{flex:1;min-width:110px;border:1.5px solid var(--border);border-radius:9px;padding:8px 11px;font-size:13px;color:var(--ink);background:var(--paper);font-family:'Noto Sans TC',sans-serif;outline:none}
+.log-input:focus{border-color:var(--blue)}
+.log-amount-wrap{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:9px;background:var(--paper);overflow:hidden;width:130px}
+.log-currency-sel{border:none;background:transparent;padding:7px 2px 7px 9px;font-size:12px;color:var(--ink-faint);cursor:pointer;outline:none;-webkit-appearance:none;appearance:none}
+.log-amount{border:none;flex:1;padding:7px;font-size:13px;color:var(--ink);background:transparent;outline:none;font-family:'DM Serif Display',serif;min-width:0}
+.log-btn{background:var(--pink);border:none;border-radius:9px;width:36px;height:36px;color:white;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.log-btn:hover{opacity:.85}
+.log-list{display:flex;flex-direction:column;gap:7px}
+.log-item{display:flex;align-items:center;gap:8px;background:var(--paper);border:1.5px solid var(--border);border-radius:10px;padding:9px 11px;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.log-item-icon{width:27px;height:27px;border-radius:50%;background:var(--pink-bg);color:var(--pink);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.log-item-name{flex:1;font-size:13px;color:var(--ink)}
+.log-item-amounts{text-align:right;flex-shrink:0}
+.log-item-vnd{font-family:'DM Serif Display',serif;font-size:13px;color:var(--pink)}
+.log-item-twd{font-size:11px;color:var(--ink-faint)}
+.log-item-del{background:none;border:none;color:var(--ink-faint);cursor:pointer;font-size:14px;padding:3px;transition:color .2s;flex-shrink:0}
+.log-item-del:hover{color:var(--pink)}
+.empty-state{text-align:center;padding:30px 20px;color:var(--ink-faint);font-size:13px;line-height:1.8}
+.empty-state i{font-size:28px;display:block;margin-bottom:10px;color:var(--blue-l)}
+
+/* CHEAT SHEET */
+.translate-portal{margin:0;padding:15px 16px;background:linear-gradient(135deg,var(--blue-bg),var(--sage-bg));border-bottom:1.5px solid var(--blue-l)}
+.translate-portal-title{font-family:'DM Serif Display',serif;font-size:15px;color:var(--blue);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.translate-portal-desc{font-size:13px;color:var(--ink-light);margin-bottom:11px;line-height:1.6}
+.translate-btns{display:flex;gap:8px}
+.t-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 8px;border-radius:12px;font-size:13px;font-weight:600;text-decoration:none;transition:all .18s;border:none;cursor:pointer;font-family:'Noto Sans TC',sans-serif}
+.t-btn-main{background:var(--blue);color:white;box-shadow:0 2px 8px rgba(141,168,184,.4)}
+.t-btn-main:hover{opacity:.88}
+.t-btn-voice{background:var(--paper);color:var(--sage);border:1.5px solid var(--sage-l)}
+.t-btn-voice:hover{background:var(--sage);color:white}
+.t-btn i{font-size:14px}
+.cheat-intro{padding:12px 16px;background:var(--sage-bg);border-bottom:1.5px solid var(--sage-l)}
+.cheat-intro-text{font-size:13px;color:var(--ink-light);line-height:1.7}
+.cheat-intro-text span{font-weight:500;color:var(--sage)}
+.cheat-section{padding:13px 16px;border-bottom:1px solid var(--border)}
+.cheat-section-label{font-size:12px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase;font-family:'DM Serif Display',serif;margin-bottom:9px;display:flex;align-items:center;gap:5px}
+.cheat-cards{display:flex;flex-direction:column;gap:8px}
+.cheat-card{background:var(--paper);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .2s;box-shadow:0 1px 6px var(--shadow)}
+.cheat-card:hover{border-color:var(--blue)}
+.cheat-card-front{padding:12px 13px;display:flex;align-items:center;gap:10px}
+.cheat-card-icon{width:35px;height:35px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.cheat-zh{font-family:'Noto Serif TC',serif;font-size:14px;color:var(--ink);margin-bottom:2px}
+.cheat-vn{font-size:12px;color:var(--blue);font-style:italic}
+.cheat-front-right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.cheat-hint{font-size:11px;color:var(--ink-faint);display:flex;align-items:center;gap:3px;white-space:nowrap}
+.cheat-speak-btn{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:50px;background:var(--sage-bg);border:1px solid var(--sage-l);color:var(--sage);font-size:11px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .18s;font-family:'Noto Sans TC',sans-serif}
+.cheat-speak-btn:hover{background:var(--sage);color:white;border-color:var(--sage)}
+.cheat-speak-btn i{font-size:10px}
+.cheat-card-back{display:none;padding:10px 13px 13px;border-top:1px dashed var(--border);background:var(--paper-warm)}
+.cheat-card.open .cheat-card-back{display:block}
+.cheat-phonetic{font-family:'DM Serif Display',serif;font-size:18px;color:var(--blue);margin-bottom:3px}
+.cheat-roman{font-size:12px;color:var(--sand);font-style:italic;margin-bottom:2px}
+.cheat-en{font-size:12px;color:var(--mauve);margin-bottom:5px}
+.cheat-note{font-size:12px;color:var(--ink-light);line-height:1.65}
+
+/* CHECKLIST */
+.checklist-section{padding:15px 16px}
+.checklist-group{margin-bottom:18px}
+.checklist-group-title{font-family:'DM Serif Display',serif;font-size:15px;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.checklist-group-title i{font-size:13px}
+.checklist-items{display:flex;flex-direction:column;gap:6px}
+.check-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--paper);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s}
+.check-item:hover{background:var(--paper-warm)}
+.check-item.done{background:var(--green-bg);border-color:var(--green-l)}
+.check-box{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:11px;color:transparent}
+.check-item.done .check-box{background:var(--green);border-color:var(--green);color:white}
+.check-label{font-size:13px;color:var(--ink);flex:1;transition:color .2s}
+.check-item.done .check-label{color:var(--ink-faint);text-decoration:line-through}
+.check-sub{font-size:11px;color:var(--ink-faint);margin-top:1px}
+.checklist-progress-bar{background:var(--paper-warm);border-bottom:1.5px solid var(--border);padding:12px 16px}
+.cl-progress-title{font-size:13px;color:var(--ink);margin-bottom:6px;display:flex;justify-content:space-between}
+.cl-progress-title span{font-family:'DM Serif Display',serif;color:var(--green)}
+.cl-bar{height:6px;background:var(--border);border-radius:10px;overflow:hidden}
+.cl-fill{height:100%;background:linear-gradient(to right,var(--green),var(--blue));border-radius:10px;transition:width .4s ease}
+
+/* COPY BUTTON */
+.copy-btn{display:inline-flex;align-items:center;gap:3px;background:none;border:1px solid var(--border);border-radius:6px;padding:2px 6px;font-size:10px;color:var(--ink-faint);cursor:pointer;transition:all .18s;font-family:'Noto Sans TC',sans-serif;margin-top:3px}
+.copy-btn:hover{background:var(--blue-bg);border-color:var(--blue-l);color:var(--blue)}
+.copy-btn i{font-size:9px}
+.copy-btn.copied{background:var(--green-bg);border-color:var(--green-l);color:var(--green)}
+
+/* TOAST */
+#toast{position:fixed;bottom:calc(var(--nav-h)+16px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);font-size:12px;padding:8px 18px;border-radius:50px;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;z-index:999;font-family:'Noto Sans TC',sans-serif}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* TREASURE MEMO */
+.memo-header{background:linear-gradient(135deg,var(--gold-bg),var(--sand-bg));border-bottom:1.5px solid var(--gold-l);padding:15px 16px}
+.memo-header-title{font-family:'DM Serif Display',serif;font-size:16px;color:var(--gold);margin-bottom:3px;display:flex;align-items:center;gap:6px}
+.memo-header-desc{font-size:12px;color:var(--ink-light);line-height:1.6}
+.memo-section{padding:14px 16px;border-bottom:1px solid var(--border)}
+.memo-section:last-child{border-bottom:none}
+.memo-section-title{font-family:'DM Serif Display',serif;font-size:14px;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.memo-section-title i{font-size:12px}
+.memo-progress{background:var(--paper-warm);border-bottom:1px solid var(--border);padding:11px 16px}
+.memo-progress-row{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-light);margin-bottom:5px}
+.memo-progress-row span{font-family:'DM Serif Display',serif;color:var(--gold)}
+.memo-bar{height:5px;background:var(--border);border-radius:10px;overflow:hidden}
+.memo-fill{height:100%;background:linear-gradient(to right,var(--gold),var(--sand));border-radius:10px;transition:width .4s}
+.memo-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;background:var(--paper);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;margin-bottom:6px}
+.memo-item:last-child{margin-bottom:0}
+.memo-item:hover{background:var(--paper-warm)}
+.memo-item.done{background:var(--gold-bg);border-color:var(--gold-l)}
+.memo-box{width:20px;height:20px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:11px;color:transparent;margin-top:1px}
+.memo-item.done .memo-box{background:var(--gold);border-color:var(--gold);color:white}
+.memo-label{font-size:13px;color:var(--ink);flex:1;transition:color .2s;line-height:1.4}
+.memo-item.done .memo-label{color:var(--ink-faint);text-decoration:line-through}
+.memo-sub{font-size:11px;color:var(--ink-faint);margin-top:2px}
+
+/* NAV */
+.bottom-nav{flex-shrink:0;height:var(--nav-h);background:var(--paper);border-top:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding:0 2px;box-shadow:0 -4px 20px var(--shadow)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0;background:none;border:none;cursor:pointer;border-radius:10px;color:var(--ink-faint);position:relative;transition:color .2s}
+.nav-btn i{font-size:17px;transition:transform .2s}
+.nav-btn span{font-size:10px;letter-spacing:.02em}
+.nav-btn.active{color:var(--blue)}
+.nav-btn.active::before{content:'';position:absolute;top:0;left:6px;right:6px;height:2px;border-radius:0 0 4px 4px;background:var(--blue)}
+.nav-btn.active i{transform:translateY(-1px)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div id="status-bar" class="pre">⏳ 計算倒數中…</div>
+
+<div class="scroll-content" id="scrollArea">
+
+<!-- ══ TODAY ══ -->
+<div class="tab-panel active" id="panel-today">
+  <div class="app-header">
+    <div class="header-top">
+      <div>
+        <div class="header-label">Travel Journal · 美學尋寶之旅</div>
+        <div class="header-title">峴港 × <em>會安</em></div>
+      </div>
+      <div class="header-badge"><span class="badge-days">7</span><span class="badge-label">days/nights</span></div>
+    </div>
+    <div class="flight-board">
+      <div class="fb-row"><span class="fb-tag">去程</span><span class="fb-info">6/13 長榮 BR383 TPE→DAD</span><span class="fb-time">09:15→11:35</span></div>
+      <div class="fb-row"><span class="fb-tag ret">回程</span><span class="fb-info">6/19 長榮 BR384 DAD→TPE</span><span class="fb-time">12:55→16:45</span></div>
+      <div class="fb-seat"><i class="fa-solid fa-star"></i> 推薦 45–55 排（機翼後緣，海岸線拍攝最佳視角）</div>
+    </div>
+    <div class="hotels-row">
+      <div class="hotel-chip">
+        <div class="hotel-chip-title"><i class="fa-solid fa-house-chimney"></i>會安住宿</div>
+        <div class="hotel-chip-sub">Cozy An Boutique Hotel</div>
+        <div class="hotel-chip-days" style="color:var(--gold)">Day 1–3 🏮</div>
+        <button class="copy-btn" onclick="copyAddr('128 Tran Quang Khai, Hoi An, Vietnam',this)"><i class="fa-regular fa-copy"></i> 複製地址</button>
+      </div>
+      <div class="hotel-chip">
+        <div class="hotel-chip-title"><i class="fa-solid fa-building"></i>峴港住宿</div>
+        <div class="hotel-chip-sub">Lagom Hotel</div>
+        <div class="hotel-chip-days" style="color:var(--blue)">Day 4–7 🌊</div>
+        <button class="copy-btn" onclick="copyAddr('6-8 An Thượng 28, Ngũ Hành Sơn, Đà Nẵng 550000',this)"><i class="fa-regular fa-copy"></i> 複製地址</button>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="meta-chip"><i class="fa-solid fa-calendar"></i>6/13–6/19, 2026</div>
+      <div class="meta-chip"><i class="fa-solid fa-location-dot"></i>Hội An · Đà Nẵng</div>
+    </div>
+  </div>
+
+  <!-- WEATHER -->
+  <div id="weather-container"></div>
+
+  <div class="compact-sticky">
+    <div class="compact-meta">
+      <div class="meta-chip"><i class="fa-solid fa-calendar"></i>6/13–6/19, 2026</div>
+      <div class="meta-chip"><i class="fa-solid fa-location-dot"></i>Hội An · Đà Nẵng</div>
+    </div>
+    <div class="day-selector-bar" id="daySelectorBar"></div>
+  </div>
+
+  <div class="panel-inner" id="day-content-wrapper"></div>
+</div>
+
+<!-- ══ OVERVIEW ══ -->
+<div class="tab-panel" id="panel-overview">
+  <div class="panel-inner">
+    <div class="overview-grid">
+      <div class="ov-title">行程一覽 · All Days</div>
+      <div id="overview-cards"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BUDGET ══ -->
+<div class="tab-panel" id="panel-budget">
+  <div class="panel-inner">
+    <div class="budget-header">
+      <div class="budget-title"><i class="fa-solid fa-coins"></i> 尋寶基金看板</div>
+      <div class="budget-cards">
+        <div class="budget-card"><div class="bc-label">出發基金 VND</div><div class="bc-amount">8,800,000</div><div class="bc-unit" id="budgetInitTWD">≈ TWD 計算中…</div></div>
+        <div class="budget-card remain"><div class="bc-label">剩餘 VND</div><div class="bc-amount" id="remainVND">8,800,000</div><div class="bc-unit" id="remainTWD">≈ TWD …</div></div>
+        <div class="budget-card spent"><div class="bc-label">已花費 VND</div><div class="bc-amount" id="spentVND">0</div><div class="bc-unit" id="spentTWD">≈ TWD 0</div></div>
+        <div class="budget-card" style="background:var(--sand-bg);border-color:var(--sand-l)"><div class="bc-label">當前匯率基準</div><div class="bc-amount" id="rateDisplay" style="color:var(--sand);font-size:15px">載入中…</div><div class="bc-unit">VND = 1 TWD</div></div>
+      </div>
+      <div class="budget-progress">
+        <div class="bp-label"><span>消費進度</span><span id="spentPct">0%</span></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      </div>
+      <div id="rateBadge" class="rate-badge fallback"><i class="fa-solid fa-rotate"></i> 匯率載入中…</div>
+      <div class="dual-info"><div class="dc-flag">🇻🇳</div><div><div class="dc-rate" id="dualRateText">1 TWD = 780 VND（備用）</div><div class="dc-note">輸入 VND 或 TWD 皆可，自動雙幣換算</div></div></div>
+    </div>
+    <div class="log-section">
+      <div class="section-label"><i class="fa-solid fa-receipt"></i> 記帳明細</div>
+      <div class="log-add">
+        <input class="log-input" id="logName" type="text" placeholder="消費項目（如：Cao Lầu）"/>
+        <div class="log-amount-wrap">
+          <select class="log-currency-sel" id="logCurrency"><option value="VND">VND</option><option value="TWD">TWD</option></select>
+          <input class="log-amount" id="logAmt" type="number" placeholder="0"/>
+        </div>
+        <button class="log-btn" onclick="addLog()"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="log-list" id="logList"><div class="empty-state"><i class="fa-regular fa-receipt"></i>還沒有記帳記錄<br>點 <b>+</b> 新增第一筆消費</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CHEAT SHEET ══ -->
+<div class="tab-panel" id="panel-cheat">
+  <div class="panel-inner">
+    <!-- Translate Portal -->
+    <div class="translate-portal">
+      <div class="translate-portal-title"><i class="fa-solid fa-language"></i> 隨身即時對話翻譯通道</div>
+      <div class="translate-portal-desc">點擊下方按鈕，一鍵開啟 Google 翻譯即時語音對話或文字拍照翻譯，隨時應對突發語言情況！</div>
+      <div class="translate-btns">
+        <a class="t-btn t-btn-main" href="https://translate.google.com/?sl=zh-TW&tl=vi&op=translate" target="_blank" rel="noopener"><i class="fa-solid fa-keyboard"></i> 打字翻譯</a>
+        <a class="t-btn t-btn-voice" href="https://translate.google.com/?sl=zh-TW&tl=vi&op=sl" target="_blank" rel="noopener"><i class="fa-solid fa-microphone"></i> 語音對話</a>
+      </div>
+    </div>
+    <div class="cheat-intro"><div class="cheat-intro-text">點擊卡片展開<span>越南語拼音、羅馬拼音 & 英文對照</span>，點「🔊 播音」開啟 Google 翻譯真人發音！</div></div>
+    <div class="cheat-section">
+      <div class="cheat-section-label"><i class="fa-solid fa-utensils" style="color:var(--pink)"></i>用餐防辣與求助</div>
+      <div class="cheat-cards" id="cheat-food"></div>
+    </div>
+    <div class="cheat-section" style="border-bottom:none">
+      <div class="cheat-section-label"><i class="fa-solid fa-comments" style="color:var(--blue)"></i>基本問候與禮儀</div>
+      <div class="cheat-cards" id="cheat-greeting"></div>
+    </div>
+    <div class="cheat-section" style="border-bottom:none">
+      <div class="cheat-section-label"><i class="fa-solid fa-car" style="color:var(--sand)"></i>Grab 叫車常用句</div>
+      <div id="cheat-grab"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CHECKLIST ══ -->
+<div class="tab-panel" id="panel-checklist">
+  <div class="panel-inner">
+    <div class="checklist-progress-bar">
+      <div class="cl-progress-title">行前準備進度 <span id="clCount">0 / 0</span></div>
+      <div class="cl-bar"><div class="cl-fill" id="clFill" style="width:0%"></div></div>
+    </div>
+    <div class="checklist-section" id="checklist-container"></div>
+  </div>
+</div>
+
+<!-- ══ TREASURE MEMO ══ -->
+<div class="tab-panel" id="panel-memo">
+  <div class="panel-inner">
+    <div class="memo-header">
+      <div class="memo-header-title"><i class="fa-solid fa-bag-shopping"></i> 尋寶備忘錄</div>
+      <div class="memo-header-desc">出發前打包確認 + 這趟旅程的美學尋寶目標清單，打勾後自動存檔 ✦</div>
+    </div>
+    <div class="memo-progress">
+      <div class="memo-progress-row">打包 + 尋寶完成度 <span id="memoCount">0 / 0</span></div>
+      <div class="memo-bar"><div class="memo-fill" id="memoFill" style="width:0%"></div></div>
+    </div>
+    <div class="memo-section">
+      <div class="memo-section-title" style="color:var(--blue)"><i class="fa-solid fa-suitcase-rolling" style="color:var(--blue)"></i> 打包檢查清單</div>
+      <div id="memo-pack-list"></div>
+    </div>
+    <div class="memo-section">
+      <div class="memo-section-title" style="color:var(--gold)"><i class="fa-solid fa-gem" style="color:var(--gold)"></i> 尋寶目標清單</div>
+      <div id="memo-treasure-list"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- scroll-content -->
+
+<div id="toast">✓ 已複製到剪貼簿</div>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="switchTab('today',this)"><i class="fa-regular fa-calendar-check"></i><span>今日行程</span></button>
+  <button class="nav-btn" onclick="switchTab('overview',this)"><i class="fa-solid fa-map"></i><span>總覽</span></button>
+  <button class="nav-btn" onclick="switchTab('budget',this)"><i class="fa-solid fa-wallet"></i><span>記帳</span></button>
+  <button class="nav-btn" onclick="switchTab('cheat',this)"><i class="fa-solid fa-language"></i><span>小抄</span></button>
+  <button class="nav-btn" onclick="switchTab('checklist',this)"><i class="fa-solid fa-list-check"></i><span>行前</span></button>
+  <button class="nav-btn" onclick="switchTab('memo',this)"><i class="fa-solid fa-bag-shopping"></i><span>尋寶</span></button>
+</nav>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// CONSTANTS & STATE
+// ══════════════════════════════════════════
+const BUDGET_VND = 8800000;
+const FALLBACK_RATE = 780;
+const DEPART   = new Date(2026,5,13);
+const RETURN_D = new Date(2026,5,19);
+let RATE = FALLBACK_RATE;
+let rateIsLive = false;
+let currentDay = 1;
+let logs = [];
+let totalSpentVND = 0;
+let pickedFood = {};
+let activeFoodTab = {};
+let checkState = {};
+let memoState = {};
+let diaryData = {};
+
+// ══════════════════════════════════════════
+// LOCAL STORAGE — save & load
+// ══════════════════════════════════════════
+const LS = {
+  save(){
+    try{
+      localStorage.setItem('vn_logs', JSON.stringify(logs));
+      localStorage.setItem('vn_spent', String(totalSpentVND));
+      localStorage.setItem('vn_picked', JSON.stringify(pickedFood));
+      localStorage.setItem('vn_check', JSON.stringify(checkState));
+      localStorage.setItem('vn_memo', JSON.stringify(memoState));
+      localStorage.setItem('vn_diary', JSON.stringify(diaryData));
+    }catch(e){}
+  },
+  load(){
+    try{
+      const l = localStorage.getItem('vn_logs');
+      if(l) logs = JSON.parse(l);
+      const s = localStorage.getItem('vn_spent');
+      if(s) totalSpentVND = parseFloat(s)||0;
+      const p = localStorage.getItem('vn_picked');
+      if(p) pickedFood = JSON.parse(p);
+      const c = localStorage.getItem('vn_check');
+      if(c) checkState = JSON.parse(c);
+      const m = localStorage.getItem('vn_memo');
+      if(m) memoState = JSON.parse(m);
+      const d = localStorage.getItem('vn_diary');
+      if(d) diaryData = JSON.parse(d);
+    }catch(e){}
+  }
+};
+
+// ══════════════════════════════════════════
+// COPY ADDRESS + TOAST
+// ══════════════════════════════════════════
+function copyAddr(text, btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.classList.add('copied');
+    btn.innerHTML='<i class="fa-solid fa-check"></i> 已複製！';
+    showToast('✓ 地址已複製到剪貼簿');
+    setTimeout(()=>{
+      btn.classList.remove('copied');
+      btn.innerHTML='<i class="fa-regular fa-copy"></i> 複製地址';
+    },2500);
+  }).catch(()=>{
+    // Fallback for older browsers
+    const ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    showToast('✓ 地址已複製到剪貼簿');
+  });
+}
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+// ══════════════════════════════════════════
+// LIVE EXCHANGE RATE
+// ══════════════════════════════════════════
+async function fetchRate(){
+  try{
+    const res = await fetch('https://open.er-api.com/v6/latest/TWD',{signal:AbortSignal.timeout(6000)});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    const r = data.rates && data.rates.VND;
+    if(!r || r < 100) throw new Error('Bad rate');
+    RATE = Math.round(r);
+    rateIsLive = true;
+  }catch(e){
+    RATE = FALLBACK_RATE;
+    rateIsLive = false;
+  }
+  updateRateUI();
+  updateBudget();
+}
+
+function updateRateUI(){
+  document.getElementById('rateDisplay').textContent = RATE.toLocaleString();
+  document.getElementById('dualRateText').textContent = `1 TWD = ${RATE.toLocaleString()} VND（${rateIsLive?'即時匯率':'備用匯率 '+FALLBACK_RATE}）`;
+  document.getElementById('budgetInitTWD').textContent = `≈ TWD ${fmt(BUDGET_VND/RATE)}`;
+  const badge = document.getElementById('rateBadge');
+  if(rateIsLive){
+    badge.className = 'rate-badge live';
+    badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> 即時匯率已更新`;
+  }else{
+    badge.className = 'rate-badge fallback';
+    badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 使用備用匯率 ${FALLBACK_RATE}`;
+  }
+}
+
+// ══════════════════════════════════════════
+// WEATHER (Open-Meteo, no API key)
+// ══════════════════════════════════════════
+const WEATHER_ICONS = {0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'🌨',73:'🌨',75:'🌨',80:'🌦',81:'🌧',82:'🌧',95:'⛈',96:'⛈',99:'⛈'};
+const WMO_DESC = {0:'晴朗',1:'大致晴天',2:'局部多雲',3:'陰天',45:'薄霧',48:'霧',51:'小毛毛雨',53:'毛毛雨',55:'毛毛雨',61:'小雨',63:'中雨',65:'大雨',71:'小雪',73:'中雪',75:'大雪',80:'陣雨',81:'中陣雨',82:'大陣雨',95:'雷陣雨',96:'雷陣雨',99:'強雷陣雨'};
+
+async function fetchWeather(){
+  const c = document.getElementById('weather-container');
+  c.innerHTML = `<div class="weather-widget"><div class="weather-loading"><i class="fa-solid fa-cloud fa-spin"></i> 載入天氣中…</div></div>`;
+  try{
+    // Da Nang coords
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=16.047&longitude=108.2062&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&hourly=temperature_2m,weather_code,precipitation_probability&timezone=Asia%2FBangkok&forecast_days=2&wind_speed_unit=kmh';
+    const res = await fetch(url,{signal:AbortSignal.timeout(8000)});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const d = await res.json();
+    const cur = d.current;
+    const temp = Math.round(cur.temperature_2m);
+    const wc   = cur.weather_code;
+    const hum  = cur.relative_humidity_2m;
+    const wind = Math.round(cur.wind_speed_10m);
+    const icon = WEATHER_ICONS[wc] || '🌡';
+    const desc = WMO_DESC[wc] || '未知';
+
+    // Next 8 hourly forecasts
+    const now = new Date();
+    const hours = d.hourly.time;
+    const temps = d.hourly.temperature_2m;
+    const codes = d.hourly.weather_code;
+    const precs = d.hourly.precipitation_probability;
+    let forecastHTML = '';
+    let count = 0;
+    for(let i=0;i<hours.length&&count<8;i++){
+      const t = new Date(hours[i]);
+      if(t > now){
+        const h = t.getHours();
+        const ampm = h<12?`${h===0?12:h}AM`:(h===12?'12PM':`${h-12}PM`);
+        forecastHTML += `<div class="forecast-item">
+          <div class="forecast-time">${ampm}</div>
+          <span class="forecast-icon">${WEATHER_ICONS[codes[i]]||'🌡'}</span>
+          <div class="forecast-temp">${Math.round(temps[i])}°</div>
+          ${precs[i]>20?`<div style="font-size:9px;opacity:.7;margin-top:1px">${precs[i]}%💧</div>`:''}
+        </div>`;
+        count++;
+      }
+    }
+
+    c.innerHTML = `<div class="weather-widget">
+      <div class="weather-top">
+        <div class="weather-location"><i class="fa-solid fa-location-dot"></i> 峴港當前天氣</div>
+        <div style="font-size:11px;opacity:.7">${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}</div>
+      </div>
+      <div class="weather-main">
+        <div class="weather-icon">${icon}</div>
+        <div>
+          <div class="weather-temp">${temp}°C</div>
+          <div class="weather-desc">${desc}</div>
+        </div>
+      </div>
+      <div class="weather-details">
+        <div class="weather-detail"><i class="fa-solid fa-droplet"></i> 濕度 ${hum}%</div>
+        <div class="weather-detail"><i class="fa-solid fa-wind"></i> 風速 ${wind} km/h</div>
+      </div>
+      <div class="weather-forecast">${forecastHTML}</div>
+    </div>`;
+  }catch(e){
+    c.innerHTML = `<div class="weather-error"><i class="fa-solid fa-cloud-slash"></i> 天氣資料載入失敗，請確認網路連線後重新整理。</div>`;
+  }
+}
+
+// ══════════════════════════════════════════
+// FOOD DATABASE
+// ══════════════════════════════════════════
+const foodDB = {
+  hoian:{
+    meals:[
+      {name:"Bới Cơm Hoi An Restaurant & Cafe",note:"質感家常菜，環境優雅",map:"https://maps.app.goo.gl/bNBQntxGhSWBQZfy8?g_st=ic"},
+      {name:"Bale Well",note:"傳統烤肉、手工煎餅老店",map:""},
+      {name:"White Rose Restaurant",note:"白玫瑰蝦餃 + 炸雲吞專門店",map:""},
+      {name:"Bánh Mì Phượng",note:"傳奇法國麵包名店",map:""},
+      {name:"Madam Khanh – The Bánh Mì Queen",note:"法國麵包之后",map:""},
+      {name:"古鎮河畔高樓麵攤",note:"在地特色 Cao Lầu",map:""}
+    ],
+    drinks:[
+      {name:"Mót Hội An",note:"小草茶，杯口插荷花瓣的視覺美學 🌸",map:"https://maps.app.goo.gl/hfGYppbky8AB7rUU7?g_st=ic"},
+      {name:"Faifo Coffee",note:"黃色屋頂老宅露台咖啡",map:"https://maps.app.goo.gl/X6N5tYAiPVPirRWQA?g_st=ic"},
+      {name:"Phuc Long Coffee & Tea（會安店）",note:"茶味濃郁霸主",map:""},
+      {name:"Cong Caphe（會安店）",note:"共咖啡北越風情",map:""}
+    ],
+    spots:[
+      {name:"taran.Hoian",note:"頂級香氛家飾選物，沉香蠟燭必買 🕯️",map:"https://maps.app.goo.gl/vjzrfsgzHY8q8GK37?g_st=ic"},
+      {name:"Metaherb – taran. hoian",note:"綠意草本空間，姐妹品牌",map:"https://maps.app.goo.gl/Tu9Ec6fhU35qouNH6?g_st=ic"},
+      {name:"Reaching Out Teahouse",note:"頂級陶瓷工藝餐具選物 🥣",map:"https://maps.app.goo.gl/2D1wr89YVz8azgGm9?g_st=ic"},
+      {name:"Anna Jhee Hoi An",note:"質感選物服飾，設計師巷弄 👗",map:"https://maps.app.goo.gl/Wf84iKkEz8K7ycPM9?g_st=ic"},
+      {name:"Hiệu Da Leather & Suede",note:"客製皮革包，可現場訂製",map:""},
+      {name:"Cam Pho Temple（錦鋪古廟）",note:"冷門私房古蹟，古意盎然",map:"https://maps.app.goo.gl/bqrWZ1WAzibz9X5QA?g_st=ic"}
+    ]
+  },
+  danang:{
+    meals:[
+      {name:"Bếp Hên",note:"復古風溫馨家常菜",map:"https://maps.app.goo.gl/pZpC6iXwoKETkwN36?g_st=ic"},
+      {name:"Bếp Cuốn Đà Nẵng",note:"精美越式春捲特色料理",map:"https://maps.app.goo.gl/QHSQeYWjHZtHA7xV6?g_st=ic"},
+      {name:"Bánh Xèo Bà Tuyết",note:"超人氣在地脆皮煎餅",map:"https://maps.app.goo.gl/eW1ymLS3mizGbaV36?g_st=ic"},
+      {name:"Van May",note:"古色古香經典越菜",map:""},
+      {name:"Pizza 4P's",note:"日系精緻窯烤披薩，布拉塔起司必點",map:""},
+      {name:"Bánh Xèo Chờ",note:"在地市場風煎餅與烤肉串",map:""},
+      {name:"Lão Đại / Năm Đảnh",note:"在地平價海鮮大排檔",map:""}
+    ],
+    drinks:[
+      {name:"Co May Coffee & Souvenir",note:"沉香文創結合咖啡選物空間 🕯️",map:"https://maps.app.goo.gl/BDSN69pAa4AJZQKy7?g_st=ic"},
+      {name:"Phuc Long Coffee & Tea（峴港店）",note:"奶茶界愛馬仕",map:""},
+      {name:"Cong Caphe（峴港店）",note:"招牌椰奶咖啡冰沙",map:""},
+      {name:"High Lands Coffee",note:"高原咖啡，黃金蓮子茶",map:""},
+      {name:"The Coffee House",note:"明亮現代日系簡約風",map:""}
+    ],
+    spots:[
+      {name:"Hantou Souvenirs Shop",note:"文創家飾選物，漆器藤編 🥣",map:"https://maps.app.goo.gl/VqdawsVVYRL8Diwq6?g_st=ic"},
+      {name:"Nguon Spa Da Nang",note:"全身精油按摩，提前預約 💆‍♀️",map:"https://maps.app.goo.gl/HTHFRRtdr4wXqpBE7?g_st=ic"},
+      {name:"峴港壁畫村（Fresco Village）",note:"色彩繽紛打卡藝術街",map:""},
+      {name:"Hoaly Shop",note:"峴港人氣服飾選物 👗",map:""},
+      {name:"Agarwood Studios",note:"沉香線香精油選購 🕯️",map:""},
+      {name:"GO! Danang 超市 / Helio 文創市集",note:"伴手禮大囤貨最終站 🛒",map:""}
+    ]
+  }
+};
+
+// ══════════════════════════════════════════
+// ITINERARY
+// ══════════════════════════════════════════
+const days=[
+  {id:1,region:"hoian",title:"抵達峴港 ✈ 移動會安",subtitle:"6/13 週六 · Day 1",highlights:["入住Cozy An","古鎮初探","換錢換匯","taran.Hoian"],
+   events:[
+    {time:"11:35",name:"✈ 抵達峴港國際機場",note:"長榮 BR383 落地，入境後搭飯店接機專車前往會安，車程約 40 分鐘。",icon:"fa-solid fa-plane-arrival",ic:"ic-transport",dot:"blue",tags:[{l:"📍 機場",c:"t-blue"},{l:"🚗 接機",c:"t-sand"}],map:"https://maps.google.com/?q=Da+Nang+International+Airport",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80"},
+    {time:"13:30",name:"🏨 入住 Cozy An Boutique Hotel",note:"放置行李，確認飯店早餐時間與古鎮方位，稍作休息準備探索。",icon:"fa-solid fa-hotel",ic:"ic-hotel",dot:"mauve",tags:[{l:"🛎 住宿",c:"t-mauve"}],map:"https://maps.google.com/?q=Cozy+An+Boutique+Hotel+Hoi+An",img:"https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&q=80"},
+    {time:"15:00",name:"💱 會安市場金店換錢",note:"前往會安市場金店換匯（馬幣/泰銖均可換），匯率通常比機場優惠。",icon:"fa-solid fa-coins",ic:"ic-gold",dot:"gold",tags:[{l:"💰 換錢",c:"t-gold"},{l:"📍 市場",c:"t-sand"}],map:"https://maps.google.com/?q=Hoi+An+Market",img:"https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=400&q=80"},
+    {time:"16:30",name:"🕯️ 朝聖 taran.Hoian（香氛家飾選物）",note:"會安頂級香氛家飾選物，沉香蠟燭、香氛擴香器皿，美學控必訪。",icon:"fa-solid fa-wand-sparkles",ic:"ic-shop",dot:"sand",tags:[{l:"🕯️ 香氛",c:"t-sand"},{l:"✨ 選物",c:"t-gold"}],map:"https://maps.google.com/?q=taran+Hoian",img:"https://images.unsplash.com/photo-1608181831718-c9ebb5694e78?w=400&q=80"},
+    {time:"18:00",name:"🍽 晚餐時段",note:"會安古鎮覓食！開啟下方美食雷達，選定今晚用餐地點。",icon:"fa-solid fa-utensils",ic:"ic-food",dot:"pink",tags:[{l:"🍜 美食",c:"t-pink"},{l:"🏮 古鎮",c:"t-gold"}],map:"https://maps.google.com/?q=Hoi+An+Ancient+Town+restaurants",img:"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80"},
+    {time:"20:00",name:"🏮 逛夜市 & 尋手作燈籠",note:"夜市手作燈籠、文創小物最集中，留意手工刺繡包與陶瓷器皿。",icon:"fa-solid fa-moon",ic:"ic-night",dot:"mauve",tags:[{l:"🏮 夜市",c:"t-mauve"},{l:"👗 文創",c:"t-sand"}],map:"https://maps.google.com/?q=Hoi+An+Night+Market",img:"https://images.unsplash.com/photo-1559628233-100c798642d0?w=400&q=80"}
+  ]},
+  {id:2,region:"hoian",title:"美山聖地 & 椰子船",subtitle:"6/14 週日 · Day 2",highlights:["美山聖地","椰子船","Reaching Out","回憶秀"],
+   events:[
+    {time:"07:30",name:"☕ 早餐 & 晨間散步",note:"沿秋盆河清晨散步，光線最美遊客最少，到飯店附近咖啡廳開啟美好一天。",icon:"fa-solid fa-mug-hot",ic:"ic-food",dot:"pink",tags:[{l:"☀ 清晨",c:"t-sand"},{l:"🌊 河景",c:"t-blue"}],map:"https://maps.google.com/?q=Thu+Bon+River+Hoi+An",img:"https://images.unsplash.com/photo-1559628233-100c798642d0?w=400&q=80"},
+    {time:"08:30",name:"⛩ 美山聖地（Mỹ Sơn）遺址",note:"UNESCO 世界遺產，占婆王國古廟群，距會安約 40 公里，建議早出發避暑。",icon:"fa-solid fa-gopuram",ic:"ic-culture",dot:"sage",tags:[{l:"🌍 遺產",c:"t-sage"},{l:"🏛 古文明",c:"t-mauve"}],map:"https://maps.google.com/?q=My+Son+Sanctuary+Vietnam",img:"https://images.unsplash.com/photo-1617419258578-8dbfa57c4b42?w=400&q=80"},
+    {time:"12:00",name:"🍽 午餐時段",note:"返回古鎮，啟動下方美食雷達選定午餐。",icon:"fa-solid fa-bowl-food",ic:"ic-food",dot:"pink",tags:[{l:"🍱 午餐",c:"t-pink"}],map:"https://maps.google.com/?q=Hoi+An+restaurants",img:"https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400&q=80"},
+    {time:"14:00",name:"🛶 迦南島椰子船體驗",note:"水上旋轉竹籃椰子船，在椰林水道間360度旋轉，超上相的在地體驗！",icon:"fa-solid fa-sailboat",ic:"ic-sight",dot:"blue",tags:[{l:"🥥 椰子船",c:"t-sage"},{l:"📸 打卡",c:"t-blue"}],map:"https://maps.google.com/?q=Cam+Thanh+coconut+basket+boat",img:"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=80"},
+    {time:"16:00",name:"🥣 Reaching Out Teahouse",note:"頂級陶瓷工藝餐具選物，寧靜無聲的特別體驗空間，陶藝控天堂。",icon:"fa-solid fa-mug-saucer",ic:"ic-shop",dot:"sand",tags:[{l:"🥣 陶瓷",c:"t-sand"},{l:"🍵 茶道",c:"t-sage"}],map:"https://maps.google.com/?q=Reaching+Out+Teahouse+Hoi+An",img:"https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=400&q=80"},
+    {time:"17:30",name:"☕ 下午茶時段",note:"在老宅露台或河邊咖啡廳享用下午茶，開啟下方咖啡飲品選單。",icon:"fa-solid fa-coffee",ic:"ic-food",dot:"pink",tags:[{l:"☕ 咖啡",c:"t-pink"}],map:"https://maps.google.com/?q=Hoi+An+cafe",img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80"},
+    {time:"19:30",name:"🎭 會安回憶秀大實景演出",note:"震撼的實景舞台，重現會安 400 年歷史，提前預購票券！",icon:"fa-solid fa-masks-theater",ic:"ic-culture",dot:"mauve",tags:[{l:"🎭 演出",c:"t-mauve"},{l:"🎫 預購",c:"t-gold"}],map:"https://maps.google.com/?q=Hoi+An+Memories+Show",img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"}
+  ]},
+  {id:3,region:"hoian",title:"陶藝村 & 設計師巷弄",subtitle:"6/15 週一 · Day 3",highlights:["青河陶藝村","東亭博物館","Anna Jhee"],
+   events:[
+    {time:"08:00",name:"☕ 早餐 & 中央市場晨市",note:"會安中央市場早市，熱帶水果、乾貨香料，最有生活感的在地探索。",icon:"fa-solid fa-store",ic:"ic-shop",dot:"sand",tags:[{l:"🛒 市場",c:"t-sand"},{l:"🌺 晨市",c:"t-sage"}],map:"https://maps.google.com/?q=Hoi+An+Central+Market",img:"https://images.unsplash.com/photo-1583484963886-cfe2bff2945f?w=400&q=80"},
+    {time:"09:30",name:"🥣 青河陶藝村（Thanh Hà）",note:"400 年歷史傳統陶藝村，可現場體驗拉坯，帶走獨一無二手作陶器。",icon:"fa-solid fa-jar",ic:"ic-culture",dot:"sage",tags:[{l:"🥣 陶藝",c:"t-sage"},{l:"✋ 體驗",c:"t-sand"}],map:"https://maps.google.com/?q=Thanh+Ha+Pottery+Village",img:"https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=80"},
+    {time:"12:00",name:"🍽 午餐時段",note:"啟動下方美食雷達，選定今日午餐地點。",icon:"fa-solid fa-utensils",ic:"ic-food",dot:"pink",tags:[{l:"🍱 午餐",c:"t-pink"}],map:"https://maps.google.com/?q=Hoi+An+restaurants",img:"https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=400&q=80"},
+    {time:"14:00",name:"🏛 東亭博物館（Đông Tinh）",note:"冷門綠意古老陶器私房景點，幽靜空間，幾乎沒有遊客的隱藏版寶地。",icon:"fa-solid fa-landmark",ic:"ic-culture",dot:"blue",tags:[{l:"🏛 私房",c:"t-blue"},{l:"🌿 幽靜",c:"t-sage"}],map:"https://maps.google.com/?q=Dong+Tinh+Museum+Hoi+An",img:"https://images.unsplash.com/photo-1617419258578-8dbfa57c4b42?w=400&q=80"},
+    {time:"15:30",name:"☕ 下午茶時段",note:"古鎮內找一家視覺系咖啡廳，開啟下方咖啡飲品選單選定。",icon:"fa-solid fa-coffee",ic:"ic-food",dot:"pink",tags:[{l:"☕ 下午茶",c:"t-pink"}],map:"https://maps.google.com/?q=Hoi+An+cafe",img:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80"},
+    {time:"16:30",name:"👗 Anna Jhee 會安店",note:"質感選物服飾，會安設計師風格巷弄探索，亞麻棉麻最適合越南天氣。",icon:"fa-solid fa-shirt",ic:"ic-shop",dot:"sand",tags:[{l:"👗 選物",c:"t-sand"},{l:"✨ 設計師",c:"t-gold"}],map:"https://maps.google.com/?q=Anna+Jhee+Hoi+An",img:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80"},
+    {time:"19:00",name:"🍽 晚餐時段（最後一晚會安）",note:"最後一晚在會安，選一家最心儀的餐廳，細細品味！",icon:"fa-solid fa-champagne-glasses",ic:"ic-food",dot:"pink",tags:[{l:"🍜 美食",c:"t-pink"},{l:"🏮 告別",c:"t-mauve"}],map:"https://maps.google.com/?q=Hoi+An+restaurants",img:"https://images.unsplash.com/photo-1559628233-100c798642d0?w=400&q=80"}
+  ]},
+  {id:4,region:"danang",title:"移動峴港 & 壁畫村",subtitle:"6/16 週二 · Day 4",highlights:["壁畫村","Hoaly Shop","龍橋夜景","山茶夜市"],
+   events:[
+    {time:"09:00",name:"🧳 退房 → 移動峴港市區",note:"辦理退房，搭 Grab 或包車前往峴港市區，車程約 35 分鐘。",icon:"fa-solid fa-car",ic:"ic-transport",dot:"sand",tags:[{l:"🚗 移動",c:"t-sand"},{l:"📍 峴港",c:"t-blue"}],map:"https://maps.google.com/?q=Da+Nang+City+Center",img:"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=80"},
+    {time:"10:30",name:"🎨 峴港壁畫村（Fresco Village）",note:"色彩繽紛的社區壁畫街，每一面牆都是超上相的打卡藝術背景。",icon:"fa-solid fa-palette",ic:"ic-sight",dot:"blue",tags:[{l:"🎨 壁畫",c:"t-blue"},{l:"📸 打卡",c:"t-sage"}],map:"https://maps.google.com/?q=Da+Nang+Fresco+Village",img:"https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=400&q=80"},
+    {time:"12:00",name:"🍽 午餐時段",note:"啟動下方峴港美食雷達，選定午餐！",icon:"fa-solid fa-utensils",ic:"ic-food",dot:"pink",tags:[{l:"🍱 午餐",c:"t-pink"}],map:"https://maps.google.com/?q=Da+Nang+restaurants",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80"},
+    {time:"14:00",name:"🏨 入住 Lagom Hotel",note:"辦理入住，整頓行李，換上最適合逛街的裝扮！",icon:"fa-solid fa-hotel",ic:"ic-hotel",dot:"mauve",tags:[{l:"🛎 入住",c:"t-mauve"}],map:"https://maps.google.com/?q=Lagom+Hotel+Da+Nang",img:"https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&q=80"},
+    {time:"15:00",name:"👗 Hoaly Shop 選物大逛",note:"峴港人氣選物服飾，質感亞麻棉麻系列，旅程必買清單。",icon:"fa-solid fa-bag-shopping",ic:"ic-shop",dot:"sand",tags:[{l:"👗 選物",c:"t-sand"},{l:"🛍 購物",c:"t-pink"}],map:"https://maps.google.com/?q=Hoaly+Shop+Da+Nang",img:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80"},
+    {time:"16:30",name:"🕯️ Co May Coffee & Souvenir",note:"結合咖啡與沉香文創的選物空間，同時完成下午茶與伴手禮採購！",icon:"fa-solid fa-wand-sparkles",ic:"ic-shop",dot:"gold",tags:[{l:"🕯️ 沉香",c:"t-gold"},{l:"☕ 咖啡",c:"t-pink"}],map:"https://maps.google.com/?q=Co+May+Coffee+Souvenir+Da+Nang",img:"https://images.unsplash.com/photo-1608181831718-c9ebb5694e78?w=400&q=80"},
+    {time:"19:00",name:"🍽 晚餐時段",note:"啟動下方峴港美食雷達選定今晚餐廳。",icon:"fa-solid fa-utensils",ic:"ic-food",dot:"pink",tags:[{l:"🍜 晚餐",c:"t-pink"}],map:"https://maps.google.com/?q=Da+Nang+restaurants",img:"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80"},
+    {time:"20:30",name:"🌉 韓江龍橋夜景 & 山茶夜市",note:"欣賞韓江龍橋燈光秀（週末噴火噴水），順逛山茶夜市尋找藤編包。",icon:"fa-solid fa-bridge",ic:"ic-night",dot:"mauve",tags:[{l:"🌉 夜景",c:"t-blue"},{l:"🐲 龍橋",c:"t-mauve"}],map:"https://maps.google.com/?q=Dragon+Bridge+Da+Nang",img:"https://images.unsplash.com/photo-1583952267894-700bc99ffc39?w=400&q=80"}
+  ]},
+  {id:5,region:"danang",title:"巴拿山金手橋 & 精油 SPA",subtitle:"6/17 週三 · Day 5",highlights:["佛手金手橋","Nguon Spa","WinMart採買"],
+   events:[
+    {time:"07:30",name:"🚌 出發巴拿山（Bà Nà Hills）",note:"早出發避開人潮，搭包車前往。票券建議提前網路預購。",icon:"fa-solid fa-bus",ic:"ic-transport",dot:"sand",tags:[{l:"🚌 包車",c:"t-sand"},{l:"🎫 預購",c:"t-gold"}],map:"https://maps.google.com/?q=Ba+Na+Hills+Da+Nang",img:"https://images.unsplash.com/photo-1587163153946-15e0e1a5c39e?w=400&q=80"},
+    {time:"09:00",name:"🚡 纜車上山 → 佛手黃金橋 📸",note:"世界最長纜車之一，佛手黃金橋必拍！一下纜車直奔金橋搶佔最美位置。",icon:"fa-solid fa-hands",ic:"ic-sight",dot:"blue",tags:[{l:"📸 金手橋",c:"t-blue"},{l:"🌿 雲霧",c:"t-sage"}],map:"https://maps.google.com/?q=Golden+Bridge+Ba+Na+Hills",img:"https://images.unsplash.com/photo-1587163153946-15e0e1a5c39e?w=400&q=80"},
+    {time:"11:30",name:"🏰 法式村莊漫步 & 午餐",note:"歐式建築彷彿置身法國小鎮，園區內自助餐享用。",icon:"fa-solid fa-church",ic:"ic-culture",dot:"sage",tags:[{l:"🏰 法式",c:"t-sage"},{l:"🍽 午餐",c:"t-pink"}],map:"https://maps.google.com/?q=Ba+Na+Hills+French+Village",img:"https://images.unsplash.com/photo-1560472355-536de3962603?w=400&q=80"},
+    {time:"14:30",name:"🚡 下山返回峴港",note:"傍晚山霧迷人，不用太趕，好好享受雲端漫步。",icon:"fa-solid fa-cable-car",ic:"ic-transport",dot:"sand",tags:[{l:"⬇ 下山",c:"t-sand"}],map:"https://maps.google.com/?q=Ba+Na+Hills+Da+Nang",img:"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=80"},
+    {time:"16:00",name:"💆‍♀️ Nguon Spa Da Nang 精油按摩",note:"預約全身精油按摩，巴拿山耗費體力後的最佳犒賞！提前預約。",icon:"fa-solid fa-spa",ic:"ic-spa",dot:"pink",tags:[{l:"💆 按摩",c:"t-pink"},{l:"✨ 舒壓",c:"t-mauve"}],map:"https://maps.google.com/?q=Nguon+Spa+Da+Nang",img:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&q=80"},
+    {time:"19:00",name:"🍽 晚餐時段",note:"啟動下方峴港美食雷達選定今晚餐廳。",icon:"fa-solid fa-utensils",ic:"ic-food",dot:"pink",tags:[{l:"🍜 晚餐",c:"t-pink"}],map:"https://maps.google.com/?q=Da+Nang+restaurants",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80"},
+    {time:"21:00",name:"🏪 Circle K / WinMart+ 採買",note:"在地優格、番石榴汁、腰果、乾芒果零食補給，旅行最日常的快樂。",icon:"fa-solid fa-store",ic:"ic-shop",dot:"sand",tags:[{l:"🛒 超商",c:"t-sand"},{l:"🥭 零食",c:"t-sage"}],map:"https://maps.google.com/?q=WinMart+Da+Nang",img:"https://images.unsplash.com/photo-1606471191009-63994c53433b?w=400&q=80"}
+  ]},
+  {id:6,region:"danang",title:"靈應寺 & 伴手禮大囤貨",subtitle:"6/18 週四 · Day 6",highlights:["靈應寺海景","Agarwood Studios","GO! Danang","Helio夜市"],
+   events:[
+    {time:"08:00",name:"⛩ 山茶半島靈應寺（Lady Buddha）",note:"67 公尺白色觀音眺望南海，入內著長衣長褲，清晨人少風景絕美。",icon:"fa-solid fa-place-of-worship",ic:"ic-culture",dot:"sage",tags:[{l:"🙏 靈應寺",c:"t-sage"},{l:"🌊 海景",c:"t-blue"}],map:"https://maps.google.com/?q=Linh+Ung+Pagoda+Son+Tra",img:"https://images.unsplash.com/photo-1617419258578-8dbfa57c4b42?w=400&q=80"},
+    {time:"10:30",name:"🍽 午餐時段",note:"啟動下方峴港美食雷達，選定午餐。",icon:"fa-solid fa-utensils",ic:"ic-food",dot:"pink",tags:[{l:"🍱 午餐",c:"t-pink"}],map:"https://maps.google.com/?q=Da+Nang+restaurants",img:"https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=400&q=80"},
+    {time:"13:00",name:"🕯️ Agarwood Studios 沉香工坊",note:"沉香線香、精油擴香選購，峴港最具質感的香氛選物來源。",icon:"fa-solid fa-wand-sparkles",ic:"ic-shop",dot:"gold",tags:[{l:"🕯️ 沉香",c:"t-gold"},{l:"✨ 香氛",c:"t-sand"}],map:"https://maps.google.com/?q=Agarwood+Studios+Da+Nang",img:"https://images.unsplash.com/photo-1608181831718-c9ebb5694e78?w=400&q=80"},
+    {time:"14:30",name:"🥣 Hantou Souvenirs Shop",note:"文創家飾選物，特色漆器、藤編、越南設計家居品，一站購齊。",icon:"fa-solid fa-jar",ic:"ic-shop",dot:"sand",tags:[{l:"🥣 家飾",c:"t-sand"},{l:"🛍 選物",c:"t-mauve"}],map:"https://maps.google.com/?q=Hantou+Souvenirs+Da+Nang",img:"https://images.unsplash.com/photo-1583484963886-cfe2bff2945f?w=400&q=80"},
+    {time:"16:00",name:"🛒 GO! Danang 超市大囤貨",note:"伴手禮採購：越南咖啡豆、腰果、芒果乾、荷葉茶，全部帶走！",icon:"fa-solid fa-cart-shopping",ic:"ic-shop",dot:"sage",tags:[{l:"🛒 超市",c:"t-sage"},{l:"☕ 咖啡豆",c:"t-pink"},{l:"🎁 手信",c:"t-gold"}],map:"https://maps.google.com/?q=GO+Supermarket+Da+Nang",img:"https://images.unsplash.com/photo-1606471191009-63994c53433b?w=400&q=80"},
+    {time:"18:30",name:"🍽 晚餐時段",note:"啟動下方峴港美食雷達，選定旅程最後的峴港晚餐。",icon:"fa-solid fa-champagne-glasses",ic:"ic-food",dot:"pink",tags:[{l:"🍜 最後晚餐",c:"t-pink"},{l:"🥂 慶祝",c:"t-mauve"}],map:"https://maps.google.com/?q=Da+Nang+restaurants",img:"https://images.unsplash.com/photo-1559628233-100c798642d0?w=400&q=80"},
+    {time:"20:30",name:"🎪 Helio 文創市集 & 美食夜市",note:"峴港特色夜市，結合美食、手工藝、表演，加碼最後一夜！",icon:"fa-solid fa-tent",ic:"ic-night",dot:"mauve",tags:[{l:"🎪 夜市",c:"t-mauve"},{l:"✨ 文創",c:"t-gold"}],map:"https://maps.google.com/?q=Helio+Night+Market+Da+Nang",img:"https://images.unsplash.com/photo-1583952267894-700bc99ffc39?w=400&q=80"}
+  ]},
+  {id:7,region:"danang",title:"悠閒早餐 ✈ 啟程返台",subtitle:"6/19 週五 · Day 7",highlights:["飯店早餐","整理行李","BR384返台"],
+   events:[
+    {time:"07:00",name:"☕ 飯店悠閒早餐",note:"最後一頓越南早餐，細細品味，好好告別這趟美學尋寶之旅。",icon:"fa-solid fa-mug-hot",ic:"ic-food",dot:"pink",tags:[{l:"☀ 最後早晨",c:"t-sand"},{l:"☕ 早餐",c:"t-pink"}],map:"https://maps.google.com/?q=Lagom+Hotel+Da+Nang",img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80"},
+    {time:"08:30",name:"🧳 行李整理與最終打包",note:"確認所有戰利品安全收妥，護照、機票在手，注意超重確認！",icon:"fa-solid fa-suitcase-rolling",ic:"ic-hotel",dot:"mauve",tags:[{l:"🧳 打包",c:"t-mauve"},{l:"✅ 確認",c:"t-sage"}],map:"https://maps.google.com/?q=Lagom+Hotel+Da+Nang",img:"https://images.unsplash.com/photo-1553531384-411a247ccd73?w=400&q=80"},
+    {time:"10:45",name:"🚗 出發前往峴港國際機場",note:"國際線建議 2 小時前抵達，Lagom Hotel 可協助叫車。",icon:"fa-solid fa-car",ic:"ic-transport",dot:"sand",tags:[{l:"🚗 前往機場",c:"t-sand"}],map:"https://maps.google.com/?q=Da+Nang+International+Airport",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80"},
+    {time:"12:55",name:"✈ BR384 起飛 → 台北桃園",note:"長榮航空 BR384，DAD → TPE，預計 16:45 落地。滿載器物與美學記憶回家！",icon:"fa-solid fa-plane-departure",ic:"ic-transport",dot:"blue",tags:[{l:"✈ 返台",c:"t-blue"},{l:"🏠 回家",c:"t-sage"}],map:"https://maps.google.com/?q=Taiwan+Taoyuan+International+Airport",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80"}
+  ]}
+];
+
+// ══════════════════════════════════════════
+// CHEAT SHEET
+// ══════════════════════════════════════════
+const cheatData={
+  food:[
+    {zh:"不加辣",vn:"Không cay",roman:"Khong cay",en:"No spicy",icon:"fa-solid fa-pepper-hot",ibg:"background:var(--pink-bg);color:var(--pink)",phonetic:"控 開（ㄎㄨㄥˋ ㄎㄞ）",note:"點餐必說！越南料理普遍偏辣，主動告知否則真的很辣。"},
+    {zh:"微辣就好",vn:"Cay một chút thôi",roman:"Cay mot chut thoi",en:"Little spicy",icon:"fa-solid fa-fire-flame-simple",ibg:"background:var(--sand-bg);color:var(--sand)",phonetic:"開 摩 出 推（ㄎㄞ ㄇㄛˊ ㄔㄨ ㄊㄨㄟ）",note:"想嘗鮮又怕太辣的折衷說法，讓廚師少放一點辣椒。"},
+    {zh:"辣椒另外放",vn:"Ớt để riêng",roman:"Ot de rieng",en:"Chili on the side",icon:"fa-solid fa-bowl-food",ibg:"background:var(--sage-bg);color:var(--sage)",phonetic:"哦 碟 壬（ㄜˊ ㄉㄧㄝˊ ㄖㄣˊ）",note:"辣椒單獨盛裝，自己決定加多少，最安全的點餐策略。"},
+    {zh:"請再給我一些紙巾",vn:"Cho em xin thêm khăn giấy",roman:"Cho em xin them khan giay",en:"More tissue please",icon:"fa-solid fa-hand-sparkles",ibg:"background:var(--blue-bg);color:var(--blue)",phonetic:"找 欸 心 添 看 賈（ㄓㄠˇ ㄝ ㄒㄧㄣ ㄊㄧㄢ ㄎㄢˋ ㄐㄧㄚˇ）",note:"小吃店紙巾常需另付費（約 2,000 VND），帶零錢備用。"}
+  ],
+  greeting:[
+    {zh:"你好 / 謝謝",vn:"Xin chào / Cảm ơn",roman:"Sin chao / Gam on",en:"Hello / Thank you",icon:"fa-solid fa-hands-clapping",ibg:"background:var(--sage-bg);color:var(--sage)",phonetic:"新 照 / 干 恩（ㄒㄧㄣ ㄓㄠˋ / ㄍㄢ ㄣ）",note:"最基礎、最萬用的兩句！多說謝謝，店家對台灣人印象很好。"},
+    {zh:"多少錢？",vn:"Bao nhiêu tiền?",roman:"Bao nhieu tien?",en:"How much?",icon:"fa-solid fa-tag",ibg:"background:var(--sand-bg);color:var(--sand)",phonetic:"包 妞 田（ㄅㄠ ㄋㄧㄡ ㄊㄧㄢˊ）",note:"市場必問！許多攤位不標價，問了才知道，問完再殺價。"},
+    {zh:"算便宜一點好嗎？",vn:"Giảm giá một chút được không?",roman:"Giam gia mot chut duoc khong?",en:"Can you give a discount?",icon:"fa-solid fa-handshake",ibg:"background:var(--mauve-bg);color:var(--mauve)",phonetic:"剪 架 摩 出 德 控（ㄐㄧㄢˇ ㄐㄧㄚˋ ㄇㄛˊ ㄔㄨ ㄉㄜˊ ㄎㄨㄥˋ）",note:"殺價文化普遍，通常從標價 6–7 折談起，微笑是最好的武器！"},
+    {zh:"再見",vn:"Tạm biệt",roman:"Tam biet",en:"Goodbye",icon:"fa-solid fa-hand-wave",ibg:"background:var(--blue-bg);color:var(--blue)",phonetic:"膽 別（ㄉㄢˇ ㄅㄧㄝˊ）",note:"離開店家記得說一聲，老闆會更開心，留下美好印象！"}
+  ]
+};
+
+// ══════════════════════════════════════════
+// CHECKLIST DATA
+// ══════════════════════════════════════════
+const checklistData=[
+  {group:"📄 證件與票務",icon:"fa-solid fa-passport",color:"var(--blue)",items:[
+    {id:"c1",label:"護照",sub:"有效期限需超過出發日 6 個月"},
+    {id:"c2",label:"機票電子票夾列印/截圖",sub:"BR383 去程 / BR384 回程"},
+    {id:"c3",label:"飯店訂單確認信",sub:"Cozy An + Lagom Hotel"},
+    {id:"c4",label:"旅遊平安保險",sub:"建議含醫療及行李遺失"},
+    {id:"c5",label:"越南入境 E-Visa（如需）",sub:"台灣護照可免簽 45 天"}
+  ]},
+  {group:"💰 金錢與支付",icon:"fa-solid fa-coins",color:"var(--gold)",items:[
+    {id:"c6",label:"準備台幣換匯（建議帶現金）",sub:"或在峴港/會安市場金店換"},
+    {id:"c7",label:"信用卡確認（Visa/Master）",sub:"通知銀行出國避免被鎖卡"},
+    {id:"c8",label:"備用現金",sub:"VND 零錢備用（廁所/小費）"}
+  ]},
+  {group:"🧴 隨身健康與藥品",icon:"fa-solid fa-kit-medical",color:"var(--pink)",items:[
+    {id:"c9",label:"防曬乳 SPF50+",sub:"越南日照強烈，戶外必備"},
+    {id:"c10",label:"腸胃藥（克瀉治 / 正露丸）",sub:"飲食換境備用"},
+    {id:"c11",label:"感冒頭痛藥",sub:"備用藥品"},
+    {id:"c12",label:"防蚊液",sub:"古鎮巷弄、水上活動必備"},
+    {id:"c13",label:"OK繃與傷口消毒藥水",sub:"小外傷應急"},
+    {id:"c14",label:"個人常用藥",sub:"慢性病藥品請備足"}
+  ]},
+  {group:"👗 衣物與裝備",icon:"fa-solid fa-shirt",color:"var(--sage)",items:[
+    {id:"c15",label:"輕薄透氣上衣 × 多件",sub:"越南6月均溫 30-35°C"},
+    {id:"c16",label:"長褲/薄外套",sub:"進廟宇必備，冷氣房保暖"},
+    {id:"c17",label:"好走的鞋（含涼鞋）",sub:"古鎮石板路多"},
+    {id:"c18",label:"摺疊雨傘或輕薄雨衣",sub:"6月偶有午後雷陣雨"},
+    {id:"c19",label:"快乾毛巾",sub:"海灘、椰子船體驗備用"}
+  ]},
+  {group:"📱 數位與電器",icon:"fa-solid fa-mobile-screen",color:"var(--mauve)",items:[
+    {id:"c20",label:"手機充電器 + 行動電源",sub:"建議 10,000mAh 以上"},
+    {id:"c21",label:"越南 SIM 卡或 eSIM",sub:"Viettel/Vinaphone，機場可買"},
+    {id:"c22",label:"相機 + 記憶卡備用",sub:"大容量必備"},
+    {id:"c23",label:"防水手機套",sub:"椰子船、水上活動"},
+    {id:"c24",label:"轉接插頭（越南C/A型）",sub:"台灣插頭通常可直接使用"},
+    {id:"c25",label:"下載離線地圖（Google Maps）",sub:"景點先加入我的最愛"}
+  ]},
+  {group:"🎒 其他便利小物",icon:"fa-solid fa-bag-shopping",color:"var(--sand)",items:[
+    {id:"c26",label:"環保購物袋",sub:"市場採買、伴手禮裝用"},
+    {id:"c27",label:"小型手提行李鎖",sub:"住宿保管箱備用"},
+    {id:"c28",label:"暈車藥",sub:"山路巴拿山車程備用"},
+    {id:"c29",label:"紙本筆記本 + 原子筆",sub:"記錄美好時刻"},
+    {id:"c30",label:"耳塞 + 眼罩",sub:"飛機/住宿好眠"}
+  ]}
+];
+
+// ══════════════════════════════════════════
+// STATUS BAR
+// ══════════════════════════════════════════
+function updateStatusBar(){
+  const now=new Date();
+  const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const bar=document.getElementById('status-bar');
+  const d1=new Date(DEPART.getFullYear(),DEPART.getMonth(),DEPART.getDate());
+  const d2=new Date(RETURN_D.getFullYear(),RETURN_D.getMonth(),RETURN_D.getDate());
+  if(today<d1){
+    const diff=Math.round((d1-today)/86400000);
+    bar.className='pre';bar.innerHTML=`✈️ 距離峴港會安美學尋寶之旅還有 <b>${diff}</b> 天！`;
+  }else if(today<=d2){
+    bar.className='during';bar.innerHTML='✨ 順飛玩得愉快！好好享受每一天！';
+  }else{
+    bar.className='post';bar.innerHTML='📸 旅途平安！滿載器物與美學的回憶返家。';
+  }
+}
+
+// ══════════════════════════════════════════
+// TAB SWITCH
+// ══════════════════════════════════════════
+function switchTab(tab,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('scrollArea').scrollTo({top:0,behavior:'smooth'});
+}
+
+// ══════════════════════════════════════════
+// DAY SELECTOR & RENDER
+// ══════════════════════════════════════════
+function buildDaySelector(){
+  document.getElementById('daySelectorBar').innerHTML=days.map(d=>
+    `<div class="day-chip${d.id===currentDay?' active':''}" onclick="selectDay(${d.id})">Day ${d.id}</div>`
+  ).join('');
+}
+function selectDay(id){currentDay=id;buildDaySelector();renderDay(id);}
+
+function renderDay(id){
+  const day=days.find(d=>d.id===id);
+  const rb=day.region==='hoian'
+    ?`<span class="region-badge rb-hoian">🏮 會安</span>`
+    :`<span class="region-badge rb-danang">🌊 峴港</span>`;
+  const events=day.events.map(ev=>{
+    const thumb=ev.img?`<div class="tl-thumb-wrap"><img class="tl-thumb" src="${ev.img}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"><a class="tl-nav-btn" href="${ev.map}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><i class="fa-solid fa-location-dot"></i> 導航</a></div>`:'';
+    return `<div class="tl-item">
+      <div class="tl-time"><span>${ev.time}</span></div>
+      <div class="tl-dot ${ev.dot}"></div>
+      <div class="tl-card">
+        ${thumb}
+        <div class="tl-body">
+          <div class="tl-card-header">
+            <div class="tl-name">${ev.name}</div>
+            <div class="tl-ico ${ev.ic}"><i class="${ev.icon}"></i></div>
+          </div>
+          <div class="tl-note">${ev.note}</div>
+          <div class="tl-tags">${ev.tags.map(t=>`<span class="tl-tag ${t.c}">${t.l}</span>`).join('')}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('day-content-wrapper').innerHTML=`
+    <div class="day-header">
+      <div class="day-title">${day.title} ${rb}</div>
+      <div class="day-subtitle">${day.subtitle}</div>
+    </div>
+    <div class="timeline">${events}</div>
+    ${renderFoodRadar(day)}`;
+}
+
+// ══════════════════════════════════════════
+// FOOD RADAR
+// ══════════════════════════════════════════
+function renderFoodRadar(day){
+  const db=foodDB[day.region];
+  const tab=activeFoodTab[day.id]||'meals';
+  const rb=day.region==='hoian'
+    ?`<span class="region-badge rb-hoian" style="font-size:10px">🏮 會安</span>`
+    :`<span class="region-badge rb-danang" style="font-size:10px">🌊 峴港</span>`;
+  const items=db[tab].map((item,i)=>{
+    const key=`${day.id}_${tab}_${i}`;
+    const picked=!!pickedFood[key];
+    const mapBtn=item.map
+      ?`<a class="food-map-btn" href="${item.map}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><i class="fa-solid fa-location-dot"></i> 地圖</a>`
+      :`<span class="food-map-btn" style="opacity:.3;cursor:default;pointer-events:none"><i class="fa-solid fa-location-dot"></i> 地圖</span>`;
+    return `<div class="food-item${picked?' picked':''}" onclick="toggleFood('${key}')">
+      <div class="food-item-num">${i+1}</div>
+      <div class="food-item-body">
+        <div class="food-item-name">${item.name}</div>
+        <div class="food-item-note">${item.note}</div>
+      </div>
+      <div class="food-item-actions">
+        <i class="fa-solid fa-circle-check food-item-check"></i>
+        ${mapBtn}
+      </div>
+    </div>`;
+  }).join('');
+  return `<div class="food-radar">
+    <div class="food-radar-header">
+      <div class="food-radar-title"><i class="fa-solid fa-map-location-dot" style="color:var(--blue)"></i> 美食景點雷達</div>
+      ${rb}
+    </div>
+    <div class="food-tabs">
+      <div class="food-tab${tab==='meals'?' active':''}" onclick="setFoodTab(${day.id},'meals')">🍱 吃</div>
+      <div class="food-tab${tab==='drinks'?' active':''}" onclick="setFoodTab(${day.id},'drinks')">🥤 喝</div>
+      <div class="food-tab${tab==='spots'?' active':''}" onclick="setFoodTab(${day.id},'spots')">🛍️ 逛</div>
+    </div>
+    <div class="food-list">${items}</div>
+    <div class="food-radar-footer">點擊卡片 ✓ 標記今日首選 · 點「地圖」開啟 Google Maps</div>
+  </div>
+  ${renderDiary(day.id)}`;
+}
+function setFoodTab(dayId,tab){activeFoodTab[dayId]=tab;renderDay(dayId);}
+function toggleFood(key){pickedFood[key]=!pickedFood[key];renderDay(currentDay);LS.save();}
+
+// ══════════════════════════════════════════
+// DIARY — 每日手帳碎碎念（localStorage）
+// ══════════════════════════════════════════
+function renderDiary(dayId){
+  const val=diaryData[dayId]||'';
+  return `<div style="margin:0 16px 22px">
+    <div style="font-family:'DM Serif Display',serif;font-size:14px;color:var(--sand);margin-bottom:8px;display:flex;align-items:center;gap:6px">
+      ✍️ 今日美學碎碎念
+    </div>
+    <textarea id="diary-${dayId}" onchange="saveDiary(${dayId})" oninput="saveDiary(${dayId})"
+      placeholder="寫下今天的美好瞬間、想法或尋寶心得…"
+      style="width:100%;min-height:96px;resize:none;border:1.5px dashed var(--sand-l);border-radius:12px;background:var(--gold-bg);padding:12px 14px;font-size:13px;font-family:'Noto Serif TC',serif;color:var(--ink);line-height:1.8;outline:none;transition:border-color .2s"
+      onfocus="this.style.borderColor='var(--sand)'" onblur="this.style.borderColor='var(--sand-l)'"
+    >${val}</textarea>
+  </div>`;
+}
+function saveDiary(dayId){
+  const el=document.getElementById('diary-'+dayId);
+  if(!el)return;
+  diaryData[dayId]=el.value;
+  try{localStorage.setItem('vn_diary',JSON.stringify(diaryData));}catch(e){}
+}
+
+// ══════════════════════════════════════════
+// OVERVIEW
+// ══════════════════════════════════════════
+function buildOverview(){
+  document.getElementById('overview-cards').innerHTML=days.map(d=>{
+    const rb=d.region==='hoian'
+      ?`<span class="region-badge rb-hoian" style="font-size:10px">🏮 會安</span>`
+      :`<span class="region-badge rb-danang" style="font-size:10px">🌊 峴港</span>`;
+    return `<div class="day-card" onclick="goToDay(${d.id})" style="margin-bottom:9px">
+      <div class="day-card-top">
+        <div class="day-num">0${d.id}</div>
+        <div style="flex:1"><div class="day-info-title">${d.title}</div><div class="day-info-date">${d.subtitle} ${rb}</div></div>
+      </div>
+      <div class="day-color-bar"></div>
+      <div class="day-highlights">${d.highlights.map(h=>`<div class="hl-chip"><i class="fa-solid fa-circle-dot"></i>${h}</div>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+function goToDay(id){
+  currentDay=id;buildDaySelector();renderDay(id);
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-today').classList.add('active');
+  document.querySelectorAll('.nav-btn')[0].classList.add('active');
+  document.getElementById('scrollArea').scrollTo({top:0,behavior:'smooth'});
+}
+
+// ══════════════════════════════════════════
+// BUDGET
+// ══════════════════════════════════════════
+function fmt(n){return Math.round(n).toLocaleString();}
+function vndToTwd(v){return v/RATE;}
+function twdToVnd(t){return t*RATE;}
+function updateBudget(){
+  const remain=BUDGET_VND-totalSpentVND;
+  const pct=Math.min(Math.round(totalSpentVND/BUDGET_VND*100),100);
+  document.getElementById('remainVND').textContent=fmt(remain);
+  document.getElementById('remainTWD').textContent=`≈ TWD ${fmt(vndToTwd(remain))}`;
+  document.getElementById('spentVND').textContent=fmt(totalSpentVND);
+  document.getElementById('spentTWD').textContent=`≈ TWD ${fmt(vndToTwd(totalSpentVND))}`;
+  document.getElementById('spentPct').textContent=pct+'%';
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('budgetInitTWD').textContent=`≈ TWD ${fmt(BUDGET_VND/RATE)}`;
+}
+function addLog(){
+  const name=document.getElementById('logName').value.trim();
+  const amt=parseFloat(document.getElementById('logAmt').value);
+  const cur=document.getElementById('logCurrency').value;
+  if(!name||!amt||amt<=0)return;
+  const vnd=cur==='TWD'?twdToVnd(amt):amt;
+  const twd=cur==='TWD'?amt:vndToTwd(amt);
+  logs.push({name,vnd,twd,id:Date.now()});
+  totalSpentVND+=vnd;
+  document.getElementById('logName').value='';
+  document.getElementById('logAmt').value='';
+  renderLogs();updateBudget();LS.save();
+}
+function deleteLog(id){
+  const log=logs.find(l=>l.id===id);
+  if(log)totalSpentVND-=log.vnd;
+  logs=logs.filter(l=>l.id!==id);
+  renderLogs();updateBudget();LS.save();
+}
+function renderLogs(){
+  const list=document.getElementById('logList');
+  if(!logs.length){list.innerHTML=`<div class="empty-state"><i class="fa-regular fa-receipt"></i>還沒有記帳記錄<br>點 <b>+</b> 新增第一筆消費</div>`;return;}
+  list.innerHTML=[...logs].reverse().map(l=>`
+    <div class="log-item">
+      <div class="log-item-icon"><i class="fa-solid fa-receipt"></i></div>
+      <div class="log-item-name">${l.name}</div>
+      <div class="log-item-amounts"><div class="log-item-vnd">${fmt(l.vnd)} ₫</div><div class="log-item-twd">≈ TWD ${fmt(l.twd)}</div></div>
+      <button class="log-item-del" onclick="deleteLog(${l.id})"><i class="fa-solid fa-xmark"></i></button>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════
+// CHEAT SHEET
+// ══════════════════════════════════════════
+function buildCheatSheet(){
+  ['food','greeting'].forEach(key=>{
+    document.getElementById('cheat-'+key).innerHTML=cheatData[key].map(item=>{
+      const speakUrl=`https://translate.google.com/?sl=vi&tl=zh-TW&text=${encodeURIComponent(item.vn)}&op=translate`;
+      return `<div class="cheat-card" onclick="this.classList.toggle('open')">
+        <div class="cheat-card-front">
+          <div class="cheat-card-icon" style="${item.ibg}"><i class="${item.icon}"></i></div>
+          <div style="flex:1;min-width:0"><div class="cheat-zh">${item.zh}</div><div class="cheat-vn">${item.vn}</div></div>
+          <div class="cheat-front-right">
+            <div class="cheat-hint"><i class="fa-solid fa-chevron-down"></i> 點看發音</div>
+            <a class="cheat-speak-btn" href="${speakUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><i class="fa-solid fa-volume-high"></i> 播音</a>
+          </div>
+        </div>
+        <div class="cheat-card-back">
+          <div class="cheat-phonetic">${item.phonetic}</div>
+          <div class="cheat-roman">羅馬拼音：${item.roman}</div>
+          <div class="cheat-en">English：${item.en}</div>
+          <div class="cheat-note">${item.note}</div>
+        </div>
+      </div>`;
+    }).join('');
+  });
+}
+
+// ══════════════════════════════════════════
+// CHECKLIST
+// ══════════════════════════════════════════
+function buildChecklist(){
+  const container=document.getElementById('checklist-container');
+  container.innerHTML=checklistData.map(group=>`
+    <div class="checklist-group">
+      <div class="checklist-group-title" style="color:${group.color}">
+        <i class="${group.icon}" style="color:${group.color}"></i>${group.group}
+      </div>
+      <div class="checklist-items">
+        ${group.items.map(item=>`
+          <div class="check-item${checkState[item.id]?' done':''}" onclick="toggleCheck('${item.id}')">
+            <div class="check-box"><i class="fa-solid fa-check"></i></div>
+            <div style="flex:1">
+              <div class="check-label">${item.label}</div>
+              ${item.sub?`<div class="check-sub">${item.sub}</div>`:''}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+  updateChecklistProgress();
+}
+function toggleCheck(id){
+  checkState[id]=!checkState[id];
+  const items=document.querySelectorAll('.check-item');
+  items.forEach(el=>{
+    const oc=el.getAttribute('onclick');
+    if(oc&&oc.includes(`'${id}'`)) el.classList.toggle('done',!!checkState[id]);
+  });
+  updateChecklistProgress();LS.save();
+}
+function updateChecklistProgress(){
+  const total=checklistData.reduce((a,g)=>a+g.items.length,0);
+  const done=Object.values(checkState).filter(Boolean).length;
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('clCount').textContent=`${done} / ${total}`;
+  document.getElementById('clFill').style.width=pct+'%';
+}
+
+// ══════════════════════════════════════════
+// TREASURE MEMO DATA & FUNCTIONS
+// ══════════════════════════════════════════
+const memoPackData=[
+  {id:'m1', label:'護照', sub:'有效期限超過出發日 6 個月以上'},
+  {id:'m2', label:'E-Visa（如需）', sub:'台灣護照可免簽越南 45 天，確認最新規定'},
+  {id:'m3', label:'泰銖 / 馬幣備用現金', sub:'在當地金店換 VND 匯率更好'},
+  {id:'m4', label:'換錢衣物（長衣長褲）', sub:'進廟宇必備，冷氣房保暖用'},
+  {id:'m5', label:'越南網卡 / eSIM', sub:'Viettel 機場可購，或出發前辦好 eSIM'},
+  {id:'m6', label:'器物防撞包材', sub:'氣泡袋、防撞收納盒，保護陶瓷戰利品'},
+];
+const memoTreasureData=[
+  {id:'t1', label:'Reaching Out 陶瓷器皿 🥣', sub:'會安 Reaching Out Teahouse 選物'},
+  {id:'t2', label:'taran.Hoian 香氛 / 沉香蠟燭 🕯️', sub:'會安 taran.Hoian 香氛選物'},
+  {id:'t3', label:'設計師服飾 👗', sub:'Anna Jhee（會安）/ Hoaly Shop（峴港）'},
+  {id:'t4', label:'藤編包', sub:'山茶夜市 / 峴港市集尋找'},
+  {id:'t5', label:'沉香線香 🕯️', sub:'Agarwood Studios（峴港）'},
+  {id:'t6', label:'越南咖啡豆 ☕', sub:'GO! Danang 超市 / Trung Nguyên 品牌'},
+];
+
+function buildMemo(){
+  renderMemoList('memo-pack-list', memoPackData);
+  renderMemoList('memo-treasure-list', memoTreasureData);
+  updateMemoProgress();
+}
+function renderMemoList(containerId, data){
+  document.getElementById(containerId).innerHTML=data.map(item=>`
+    <div class="memo-item${memoState[item.id]?' done':''}" onclick="toggleMemo('${item.id}')">
+      <div class="memo-box"><i class="fa-solid fa-check"></i></div>
+      <div style="flex:1">
+        <div class="memo-label">${item.label}</div>
+        ${item.sub?`<div class="memo-sub">${item.sub}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+function toggleMemo(id){
+  memoState[id]=!memoState[id];
+  const items=document.querySelectorAll('.memo-item');
+  items.forEach(el=>{
+    const oc=el.getAttribute('onclick');
+    if(oc&&oc.includes(`'${id}'`)) el.classList.toggle('done',!!memoState[id]);
+  });
+  updateMemoProgress();LS.save();
+}
+function updateMemoProgress(){
+  const total=memoPackData.length+memoTreasureData.length;
+  const done=Object.values(memoState).filter(Boolean).length;
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('memoCount').textContent=`${done} / ${total}`;
+  document.getElementById('memoFill').style.width=pct+'%';
+}
+
+// ══════════════════════════════════════════
+// WEATHER TIP BAR
+// ══════════════════════════════════════════
+function insertWeatherTip(){
+  const now=new Date();
+  const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const d1=new Date(2026,5,13),d2=new Date(2026,5,19);
+  let msg='';
+  if(today<d1) msg='☀️ 越南 6 月天氣炎熱，記得準備防曬衣物、墨鏡與大帽子喔！';
+  else if(today<=d2) msg='🥤 今天天氣炎熱，請隨時到 WinMart+ 補充大瓶礦泉水、注意防曬與補水！';
+  else msg='✨ 歡迎回家！旅途辛苦了。';
+  const existing=document.getElementById('weather-tip');
+  if(existing){existing.textContent=msg;return;}
+  const bar=document.createElement('div');
+  bar.id='weather-tip';bar.textContent=msg;
+  Object.assign(bar.style,{flexShrink:'0',padding:'7px 16px',textAlign:'center',fontSize:'12px',lineHeight:'1.5',fontWeight:'500',background:'linear-gradient(135deg,#fff8e8,#fef0e0)',color:'#9a7a30',borderBottom:'1px solid #e8d88a'});
+  const sb=document.getElementById('status-bar');
+  if(sb&&sb.nextSibling) sb.parentNode.insertBefore(bar,sb.nextSibling);
+}
+
+// ══════════════════════════════════════════
+// GRAB + MENU CHEAT
+// ══════════════════════════════════════════
+const grabCards=[
+  {zh:'我已在門口等候',vn:'Tôi đang đợi ở cửa',roman:'Toi dang doi o cua',en:"I'm waiting at the entrance",phonetic:'豆 噹 對 哦 過（ㄉㄡˋ ㄉㄤ ㄉㄨㄟˋ ㄛˊ ㄍㄨㄛ）'},
+  {zh:'請在大馬路邊停靠',vn:'Xin vui lòng dừng bên lề đường lớn',roman:'Xin vui long dung ben le duong lon',en:'Please stop by the main road',phonetic:'新 威 龍 鄧 邊 勒 鐘 龍（ㄒㄧㄣ ㄨㄟ ㄌㄨㄥˊ ㄉㄨㄥ ㄅㄧㄢ ㄌㄜˊ ㄓㄨㄥ ㄌㄨㄥˊ）'},
+  {zh:'請等我兩分鐘',vn:'Xin chờ tôi 2 phút',roman:'Xin cho toi 2 phut',en:'Please wait for 2 minutes',phonetic:'新 揪 豆 海 分（ㄒㄧㄣ ㄐㄧㄡ ㄉㄡˋ ㄏㄞˋ ㄈㄣ）'},
+];
+const menuRows=[
+  {cat:'🥩 肉類',items:[{vn:'Bò',zh:'牛'},{vn:'Heo',zh:'豬'},{vn:'Gà',zh:'雞'}]},
+  {cat:'🦐 海鮮',items:[{vn:'Tôm',zh:'蝦'},{vn:'Cá',zh:'魚'},{vn:'Nghêu',zh:'蛤蜊'}]},
+  {cat:'🔥 料理',items:[{vn:'Nướng',zh:'烤'},{vn:'Hấp',zh:'蒸'},{vn:'Xào',zh:'炒'}]},
+];
+function copyText(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.classList.add('copied');btn.innerHTML='<i class="fa-solid fa-check"></i> 已複製';
+    showToast('✓ 越南語句子已複製');
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<i class="fa-regular fa-copy"></i> 複製';},2500);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    showToast('✓ 已複製');
+  });
+}
+function buildGrabSection(){
+  const g=document.getElementById('cheat-grab');
+  if(!g)return;
+  const cardsHTML=grabCards.map(card=>{
+    const speakUrl=`https://translate.google.com/?sl=vi&tl=zh-TW&text=${encodeURIComponent(card.vn)}&op=translate`;
+    const safeVn=card.vn.replace(/'/g,"\\'");
+    return `<div class="cheat-card" onclick="this.classList.toggle('open')" style="margin-bottom:8px">
+      <div class="cheat-card-front">
+        <div class="cheat-card-icon" style="background:var(--sand-bg);color:var(--sand)"><i class="fa-solid fa-car-side"></i></div>
+        <div style="flex:1;min-width:0"><div class="cheat-zh">${card.zh}</div><div class="cheat-vn">${card.vn}</div></div>
+        <div class="cheat-front-right">
+          <div class="cheat-hint"><i class="fa-solid fa-chevron-down"></i> 展開</div>
+          <button class="copy-btn" style="margin-top:0" onclick="event.stopPropagation();copyText('${safeVn}',this)"><i class="fa-regular fa-copy"></i> 複製</button>
+          <a class="cheat-speak-btn" href="${speakUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><i class="fa-solid fa-volume-high"></i> 播音</a>
+        </div>
+      </div>
+      <div class="cheat-card-back">
+        <div class="cheat-phonetic">${card.phonetic}</div>
+        <div class="cheat-roman">羅馬拼音：${card.roman}</div>
+        <div class="cheat-en">English：${card.en}</div>
+      </div>
+    </div>`;
+  }).join('');
+  const menuHTML=`<div style="background:var(--paper);border:1.5px solid var(--border);border-radius:var(--r);padding:13px 14px 10px;box-shadow:0 1px 6px var(--shadow)">
+    <div style="font-family:'DM Serif Display',serif;font-size:14px;color:var(--ink);margin-bottom:11px;display:flex;align-items:center;gap:6px">🥩 菜單防呆速查表</div>
+    ${menuRows.map(row=>`
+      <div style="margin-bottom:9px">
+        <div style="font-size:11px;color:var(--ink-faint);letter-spacing:.06em;margin-bottom:5px">${row.cat}</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          ${row.items.map(it=>`<div style="background:var(--paper-warm);border:1.5px solid var(--border);border-radius:9px;padding:6px 11px;text-align:center;min-width:52px">
+            <div style="font-family:'DM Serif Display',serif;font-size:15px;color:var(--blue)">${it.vn}</div>
+            <div style="font-size:11px;color:var(--ink-faint);margin-top:1px">${it.zh}</div>
+          </div>`).join('')}
+        </div>
+      </div>`).join('')}
+  </div>`;
+  g.innerHTML=cardsHTML+`<div style="margin-top:12px">${menuHTML}</div>`;
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  LS.load();
+  updateStatusBar();
+  insertWeatherTip();
+  fetchRate();
+  fetchWeather();
+  buildDaySelector();
+  renderDay(currentDay);
+  buildOverview();
+  buildCheatSheet();
+  buildGrabSection();
+  buildChecklist();
+  buildMemo();
+  renderLogs();
+  updateBudget();
+  ['logName','logAmt'].forEach(id=>{
+    document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')addLog();});
+  });
+});
+</script>
+</body>
+</html>
